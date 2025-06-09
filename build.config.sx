@@ -1,0 +1,4 @@
+export default {
+  entries: ["./src/index", "./src/schemas/index"],
+  declaration: true,
+};

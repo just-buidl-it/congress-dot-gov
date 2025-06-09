@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/release-it@19/schema/release-it.json",
+  "git": {
+    "commitMessage": "chore: release v${version}"
+  },
+  "npm": {
+    "release": true
+  },
+  "hooks": {
+    "after:bump": "yarn build",
+    "after:github:release": "yarn npm publish"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "conventionalcommits"
+      },
+      "infile": "CHANGELOG.md"
+    }
+  }
+}
