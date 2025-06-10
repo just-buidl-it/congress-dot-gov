@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 export interface CongressGovConfig {
   apiKey: string;
   baseUrl?: string;
@@ -17,10 +19,7 @@ export class BaseClient {
     this.baseUrl = `https://api.congress.gov/v3${baseUrl}`;
   }
 
-  protected async get<T>(
-    endpoint: string,
-    params: Record<string, string> = {},
-  ): Promise<T> {
+  protected async get<T>(endpoint: string, params: object): Promise<T> {
     const url = new URL(endpoint, this.baseUrl);
     Object.entries(params).forEach(([key, value]) => {
       url.searchParams.append(key, String(value));
