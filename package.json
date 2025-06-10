@@ -25,10 +25,10 @@
       "types": "./dist/schemas/index.d.ts"
     }
   },
-  "homepage": "https://github.com/",
+  "homepage": "https://github.com/just-buidl-it/congress-dot-gov",
   "repository": {
     "type": "git",
-    "url": "https://github.com/.git"
+    "url": "https://github.com/just-buidl-it/congress-dot-gov.git"
   },
   "scripts": {
     "build": "unbuild",
