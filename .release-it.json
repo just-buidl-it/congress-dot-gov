@@ -4,7 +4,8 @@
     "commitMessage": "chore: release v${version}"
   },
   "npm": {
-    "release": true
+    "release": true,
+    "skipChecks": true
   },
   "hooks": {
     "after:bump": "yarn build",
