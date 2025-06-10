@@ -8,8 +8,7 @@
     "skipChecks": true
   },
   "hooks": {
-    "after:bump": "yarn build",
-    "after:github:release": "yarn npm publish"
+    "after:bump": "yarn build"
   },
   "plugins": {
     "@release-it/conventional-changelog": {
