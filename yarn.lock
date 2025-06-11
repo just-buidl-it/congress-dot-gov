@@ -5822,6 +5822,11 @@ typedoc-github-theme@^0.3.0:
   resolved "https://registry.yarnpkg.com/typedoc-github-theme/-/typedoc-github-theme-0.3.0.tgz#9fbc2f54acc3034748825ee9bf28547a4513680f"
   integrity sha512-7HzKJt8ZZSTNYczK8BcZZbpr7GsyTZgsoLFKtO4NYxXOb7mSr92yTj7hl16ind0WsOzxPo2DZGjkUH2VoPrdxg==
 
+typedoc-plugin-zod@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-zod/-/typedoc-plugin-zod-1.4.1.tgz#b46e9743caa2d6952b2d0c9ce19ea0485d992bea"
+  integrity sha512-D7+uhPFCyKMcKnUSZip/BldE08Jo/yykvbxlIcY11fI8dKyCe23/igOiZ7rPW2mXD5N9kHEA2he9LkCoU+6HtA==
+
 typedoc@^0.25.2:
   version "0.25.13"
   resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.25.13.tgz#9a98819e3b2d155a6d78589b46fa4c03768f0922"
@@ -5972,6 +5977,18 @@ validate-npm-package-license@^3.0.4:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+varvara-css@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/varvara-css/-/varvara-css-0.7.4.tgz#bc44f433b1702ab5920209993f82176b1f31a673"
+  integrity sha512-tDQz9x9jyKR7XxYQnRcaJZgXmTJBsuGwTf+4UTt9E142YLDaAihtEXnSNEvszJXjFZVTMANCsUouN8bIBK9Srw==
+
+varvara-typedoc-theme@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/varvara-typedoc-theme/-/varvara-typedoc-theme-0.3.5.tgz#2906c51c35a59196f7e921be8d5238d651be03fd"
+  integrity sha512-R3lB4Rg6lpGxUZgBR9+Ax0VUbkutjyf3kv3mNKKjQHrEdBqztqzeSP78p7UCfSG65Evb7bY0/UZxMAiinzj7gA==
+  dependencies:
+    varvara-css "^0.7.4"
 
 vscode-oniguruma@^1.7.0:
   version "1.7.0"
