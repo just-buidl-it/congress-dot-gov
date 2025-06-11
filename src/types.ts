@@ -3,11 +3,19 @@ export enum Format {
   JSON = 'json',
 }
 
+/**
+ * Base parameters for all endpoints.
+ * @inline
+ */
 export interface BaseParams {
   // The data format. Value can be xml or json.
   format?: Format;
 }
 
+/**
+ * Pagination parameters for all endpoints.
+ * @inline
+ */
 export interface PaginationParams extends BaseParams {
   // The starting record returned. 0 is the first record.
   offset?: number;
