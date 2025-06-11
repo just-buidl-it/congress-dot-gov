@@ -13,11 +13,21 @@ export enum AmendmentType {
   SUAMDT = 'SUAMDT', // 97th and 98th Congresses
 }
 
+export enum CongressChamber {
+  HOUSE = 'House',
+  SENATE = 'Senate',
+}
+
 export enum Chamber {
   HOUSE = 'House',
   SENATE = 'Senate',
   JOINT = 'Joint',
   NO_CHAMBER = 'NoChamber',
+}
+
+export enum Session {
+  REGULAR = 'R',
+  SPECIAL = 'S',
 }
 
 export enum ChamberCode {

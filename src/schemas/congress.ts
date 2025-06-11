@@ -1,14 +1,16 @@
 import { z } from 'zod';
+import { CongressChamber, Session } from './constants';
 
-export const ListCongressSchema = z.strictObject({
+
+export const CongressSummarySchema = z.strictObject({
   startYear: z.string(),
   name: z.string(),
   endYear: z.string(),
   sessions: z.array(
     z.strictObject({
-      chamber: z.string(),
-      type: z.string(),
-      number: z.number(),
+      chamber: z.nativeEnum(CongressChamber),
+      type: z.nativeEnum(Session),
+      number: z.number().optional(),
       startDate: z.string(),
       endDate: z.string().optional(),
     }),
@@ -24,8 +26,8 @@ export const CongressSchema = z.strictObject({
   endYear: z.string(),
   sessions: z.array(
     z.strictObject({
-      chamber: z.string(),
-      type: z.string(),
+      chamber: z.nativeEnum(CongressChamber),
+      type: z.nativeEnum(Session),
       number: z.number(),
       startDate: z.string(),
       endDate: z.string().optional(),
@@ -34,5 +36,6 @@ export const CongressSchema = z.strictObject({
   url: z.string(),
   updateDate: z.string(),
 });
-export type ListCongress = z.infer<typeof ListCongressSchema>;
+
+export type CongressSummary = z.infer<typeof CongressSummarySchema>;
 export type Congress = z.infer<typeof CongressSchema>;
