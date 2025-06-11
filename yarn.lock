@@ -5978,6 +5978,18 @@ validate-npm-package-license@^3.0.4:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
+varvara-css@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/varvara-css/-/varvara-css-0.7.4.tgz#bc44f433b1702ab5920209993f82176b1f31a673"
+  integrity sha512-tDQz9x9jyKR7XxYQnRcaJZgXmTJBsuGwTf+4UTt9E142YLDaAihtEXnSNEvszJXjFZVTMANCsUouN8bIBK9Srw==
+
+varvara-typedoc-theme@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/varvara-typedoc-theme/-/varvara-typedoc-theme-0.3.5.tgz#2906c51c35a59196f7e921be8d5238d651be03fd"
+  integrity sha512-R3lB4Rg6lpGxUZgBR9+Ax0VUbkutjyf3kv3mNKKjQHrEdBqztqzeSP78p7UCfSG65Evb7bY0/UZxMAiinzj7gA==
+  dependencies:
+    varvara-css "^0.7.4"
+
 vscode-oniguruma@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/vscode-oniguruma/-/vscode-oniguruma-1.7.0.tgz#439bfad8fe71abd7798338d1cd3dc53a8beea94b"
