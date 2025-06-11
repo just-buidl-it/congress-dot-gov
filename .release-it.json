@@ -18,7 +18,7 @@
       },
       "infile": "CHANGELOG.md",
       "commitsOpts": {
-        "ignore": ["chore", "docs"]
+        "ignore": "/^(chore|docs)/i"
       }
     }
   }
