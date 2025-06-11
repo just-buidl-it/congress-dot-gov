@@ -16,7 +16,10 @@
       "preset": {
         "name": "conventionalcommits"
       },
-      "infile": "CHANGELOG.md"
+      "infile": "CHANGELOG.md",
+      "commitsOpts": {
+        "ignore": ["chore", "docs"]
+      }
     }
   }
 }
