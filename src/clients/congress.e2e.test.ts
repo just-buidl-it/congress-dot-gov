@@ -1,5 +1,5 @@
 import { CongressClient } from './congress';
-import { ListCongressSchema, CongressSchema } from '../schemas/congress';
+import { CongressSummarySchema, CongressSchema } from '../schemas/congress';
 
 const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
 
@@ -18,7 +18,7 @@ describe('CongressClient Integration Tests', () => {
       expect(congresses.length).toBeLessThanOrEqual(5);
 
       congresses.forEach((congress) => {
-        expect(ListCongressSchema.parse(congress));
+        expect(CongressSummarySchema.parse(congress));
       });
     });
   });

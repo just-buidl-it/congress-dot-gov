@@ -1,6 +1,6 @@
 import { BaseClient } from './base';
 import type { PaginationParams, PaginatedResponse, BaseParams } from '../types';
-import type { ListCongress, Congress } from '../schemas/congress';
+import type { CongressSummary, Congress } from '../schemas/congress';
 
 export class CongressClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
@@ -13,7 +13,7 @@ export class CongressClient extends BaseClient {
    * @returns A list of congresses and their sessions
    */
   async getCongresses(params: PaginationParams = {}) {
-    return this.get<PaginatedResponse<{ congresses: ListCongress[] }>>('', params);
+    return this.get<PaginatedResponse<{ congresses: CongressSummary[] }>>('', params);
   }
 
   /**
