@@ -1,0 +1,8 @@
+{
+  "entryPoints": ["src/clients/*.ts", "src/schemas/*.ts"],
+  "out": "docs",
+  "exclude": "**/**/*+(index|.spec|.e2e|.test).ts",
+  "excludeReferences": true,
+  "plugin": ["typedoc-plugin-zod", "typedoc-github-theme"],
+  "includeVersion": true
+}
