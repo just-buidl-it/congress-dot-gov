@@ -7,7 +7,7 @@ import type {
 
 export class BoundCongressionalRecordClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/bound-congressional-record' });
+    super({ apiKey, endpoint: '/bound-congressional-record' });
   }
 
   /**

@@ -8,7 +8,7 @@ import type {
 
 export class DailyCongressionalRecordClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/daily-congressional-record' });
+    super({ apiKey, endpoint: '/daily-congressional-record' });
   }
 
   /**

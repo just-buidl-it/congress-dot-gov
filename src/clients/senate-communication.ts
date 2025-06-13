@@ -7,7 +7,7 @@ import type {
 
 export class SenateCommunicationClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/senate-communication' });
+    super({ apiKey, endpoint: '/senate-communication' });
   }
 
   /**

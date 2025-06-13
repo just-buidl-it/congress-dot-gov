@@ -8,7 +8,7 @@ import type {
 
 export class HouseRequirementClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/house-requirement' });
+    super({ apiKey, endpoint: '/house-requirement' });
   }
 
   /**

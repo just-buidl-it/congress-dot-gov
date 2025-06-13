@@ -16,7 +16,7 @@ import { AmendmentType } from '../schemas/constants';
 
 export class AmendmentClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/amendment' });
+    super({ apiKey, endpoint: '/amendment' });
   }
 
   /**

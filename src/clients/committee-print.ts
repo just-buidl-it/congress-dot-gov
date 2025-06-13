@@ -9,7 +9,7 @@ import { Chamber } from '../schemas/constants';
 
 export class CommitteePrintClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/committee-print' });
+    super({ apiKey, endpoint: '/committee-print' });
   }
 
   /**
