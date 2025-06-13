@@ -8,7 +8,7 @@ import {
 } from '../schemas/amendment';
 import { AmendmentType } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('AmendmentClient Integration Tests', () => {
   let client: AmendmentClient;

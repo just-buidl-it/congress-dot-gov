@@ -6,7 +6,7 @@ import {
 } from '../schemas/house-communication';
 import { CommunicationTypeCode } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('HouseCommunicationClient Integration Tests', () => {
   let client: HouseCommunicationClient;

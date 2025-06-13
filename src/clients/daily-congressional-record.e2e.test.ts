@@ -5,7 +5,7 @@ import {
   DailyCongressionalRecordArticleSchema,
 } from '../schemas/daily-congressional-record';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('DailyCongressionalRecordClient Integration Tests', () => {
   let client: DailyCongressionalRecordClient;

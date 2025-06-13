@@ -2,7 +2,7 @@ import { SummariesClient } from './summaries';
 import { SummarySchema } from '../schemas/summary';
 import { BillType } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('SummariesClient Integration Tests', () => {
   let client: SummariesClient;

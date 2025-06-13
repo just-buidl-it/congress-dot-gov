@@ -2,7 +2,7 @@ import { HearingClient } from './hearing';
 import { ListHearingSchema, HearingSchema } from '../schemas/hearing';
 import { Chamber } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('HearingClient Integration Tests', () => {
   let client: HearingClient;

@@ -9,7 +9,7 @@ import {
 import { ListCommitteeReportSchema } from '../schemas/committee-report';
 import { Chamber } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('CommitteeClient Integration Tests', () => {
   let client: CommitteeClient;

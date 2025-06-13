@@ -4,7 +4,7 @@ import {
   DailyDigestBoundCongressionalRecordSchema,
 } from '../schemas/bound-congressional-record';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('BoundCongressionalRecordClient Integration Tests', () => {
   let client: BoundCongressionalRecordClient;

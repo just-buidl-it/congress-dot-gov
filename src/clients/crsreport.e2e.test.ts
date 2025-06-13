@@ -1,7 +1,7 @@
 import { CRSReportClient } from './crsreport';
 import { ListCRSReportSchema, CRSReportSchema } from '../schemas/crsreport';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('CRSReportClient Integration Tests', () => {
   let client: CRSReportClient;

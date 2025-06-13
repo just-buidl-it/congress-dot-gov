@@ -16,7 +16,7 @@ import {
 } from '../schemas/bill';
 import { BillType, LawType } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('BillClient Integration Tests', () => {
   let client: BillClient;

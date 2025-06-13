@@ -5,7 +5,7 @@ import {
   HouseRollCallMemberVoteSchema,
 } from '../schemas/house-vote';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('HouseVoteClient Integration Tests', () => {
   let client: HouseVoteClient;

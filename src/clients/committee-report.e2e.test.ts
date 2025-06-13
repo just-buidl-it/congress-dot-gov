@@ -6,7 +6,7 @@ import {
 } from '../schemas/committee-report';
 import { CommitteeReportType } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
 
 describe('CommitteeReportClient Integration Tests', () => {
   let client: CommitteeReportClient;
