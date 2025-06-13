@@ -10,7 +10,7 @@ import type { Summary } from '../schemas/summary';
 
 export class SummariesClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/summaries' });
+    super({ apiKey, endpoint: '/summaries' });
   }
 
   /**

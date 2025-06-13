@@ -19,7 +19,7 @@ export interface MemberParams {
 
 export class MemberClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/member' });
+    super({ apiKey, endpoint: '/member' });
   }
 
   /**

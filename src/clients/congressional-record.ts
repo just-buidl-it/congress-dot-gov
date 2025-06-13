@@ -5,7 +5,7 @@ import adaptAbnormalResponseAdapter from '../utils/abnormal-response-adapter';
 
 export class CongressionalRecordClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/congressional-record' });
+    super({ apiKey, endpoint: '/congressional-record' });
   }
 
   /**

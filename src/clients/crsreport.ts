@@ -4,7 +4,7 @@ import type { ListCRSReport, CRSReport } from '../schemas/crsreport';
 
 export class CRSReportClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/crsreport' });
+    super({ apiKey, endpoint: '/crsreport' });
   }
 
   /**
