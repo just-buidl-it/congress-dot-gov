@@ -12,7 +12,7 @@ import { Chamber } from '../schemas/constants';
 
 export class CommitteeClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/committee' });
+    super({ apiKey, endpoint: '/committee' });
   }
 
   /**

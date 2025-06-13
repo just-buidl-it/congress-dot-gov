@@ -5,7 +5,7 @@ import type { Chamber } from '../schemas/constants';
 
 export class HearingClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/hearing' });
+    super({ apiKey, endpoint: '/hearing' });
   }
 
   /**

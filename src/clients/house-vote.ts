@@ -36,7 +36,7 @@ export interface HouseVoteMember {
 
 export class HouseVoteClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/house-vote' });
+    super({ apiKey, endpoint: '/house-vote' });
   }
 
   /**

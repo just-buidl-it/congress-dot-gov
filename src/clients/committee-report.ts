@@ -14,7 +14,7 @@ import { CommitteeReportType } from '../schemas/constants';
 
 export class CommitteeReportClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/committee-report' });
+    super({ apiKey, endpoint: '/committee-report' });
   }
 
   /**

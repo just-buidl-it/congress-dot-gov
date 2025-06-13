@@ -8,7 +8,7 @@ import type { CongressSummary, Congress } from '../schemas/congress';
 
 export class CongressClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/congress' });
+    super({ apiKey, endpoint: '/congress' });
   }
 
   /**

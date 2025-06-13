@@ -8,7 +8,7 @@ import {
 
 export class HouseCommunicationClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/house-communication' });
+    super({ apiKey, endpoint: '/house-communication' });
   }
 
   /**

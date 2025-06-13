@@ -11,7 +11,7 @@ import type {
 
 export class NominationClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/nomination' });
+    super({ apiKey, endpoint: '/nomination' });
   }
 
   /**
