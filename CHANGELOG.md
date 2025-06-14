@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.5](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.4...0.2.5) (2025-06-14)
+
+### Bug Fixes
+
+* update url construction ([135b7ad](https://github.com/just-buidl-it/congress-dot-gov/commit/135b7adb573be44feb61cdeddf6c0a256c26f40d))
+
 ## [0.2.4](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.2...0.2.4) (2025-06-13)
 
 ## [0.2.2](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.1...0.2.2) (2025-06-11)
