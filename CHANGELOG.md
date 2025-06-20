@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.7](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.6...0.2.7) (2025-06-20)
+
+### Bug Fixes
+
+* CongressChamber uses House of Representatives in enum ([9cc0616](https://github.com/just-buidl-it/congress-dot-gov/commit/9cc061632ac1be2f3b93b7b142a3b9dd2bdf6b23))
+* remove slash from ammendment root ([3684f17](https://github.com/just-buidl-it/congress-dot-gov/commit/3684f17a089cff95e0d0645995c780348f7d3773))
+
 ## [0.2.6](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.5...0.2.6) (2025-06-20)
 
 ### Bug Fixes
