@@ -14,7 +14,7 @@ export enum AmendmentType {
 }
 
 export enum CongressChamber {
-  HOUSE = 'House',
+  HOUSE = 'House of Representatives',
   SENATE = 'Senate',
 }
 
