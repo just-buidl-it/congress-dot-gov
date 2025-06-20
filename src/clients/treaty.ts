@@ -9,7 +9,7 @@ import type {
 
 export class TreatyClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, baseUrl: '/treaty' });
+    super({ apiKey, endpoint: '/treaty' });
   }
 
   /**
