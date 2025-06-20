@@ -25,7 +25,7 @@ export class AmendmentClient extends BaseClient {
    * @returns A list of amendments sorted by date of latest action
    */
   async getAmendments(params: PaginationParams & DateFilterParams = {}) {
-    return this.get<PaginatedResponse<{ amendments: ListAmendment[] }>>('/', params);
+    return this.get<PaginatedResponse<{ amendments: ListAmendment[] }>>('', params);
   }
 
   /**
