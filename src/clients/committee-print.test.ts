@@ -6,9 +6,9 @@ import {
 } from '../schemas/committee-print';
 import { Chamber } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('CommitteePrintClient Integration Tests', () => {
+describe('CommitteePrintClient Tests', () => {
   let client: CommitteePrintClient;
 
   beforeAll(() => {

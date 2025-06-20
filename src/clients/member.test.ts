@@ -7,9 +7,9 @@ import {
   CongressMemberSchema,
 } from '../schemas/member';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('MemberClient Integration Tests', () => {
+describe('MemberClient Tests', () => {
   let client: MemberClient;
 
   beforeAll(() => {

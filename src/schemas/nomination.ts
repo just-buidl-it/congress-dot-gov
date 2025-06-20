@@ -50,6 +50,12 @@ export const NominationSchema = z.strictObject({
       url: z.string(),
     }),
   ),
+  nominationType: z
+    .strictObject({
+      isCivilian: z.boolean().optional(),
+      isMilitary: z.boolean().optional(),
+    })
+    .optional(),
   number: z.number(),
   partNumber: z.string(),
   receivedDate: z.string(),

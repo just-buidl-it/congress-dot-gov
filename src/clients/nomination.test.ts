@@ -8,9 +8,9 @@ import {
   NominationHearingSchema,
 } from '../schemas/nomination';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('NominationClient Integration Tests', () => {
+describe('NominationClient Tests', () => {
   let client: NominationClient;
 
   beforeAll(() => {

@@ -1,9 +1,9 @@
 import { CongressClient } from './congress';
 import { CongressSummarySchema, CongressSchema } from '../schemas/congress';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('CongressClient Integration Tests', () => {
+describe('CongressClient Tests', () => {
   let client: CongressClient;
 
   beforeAll(() => {

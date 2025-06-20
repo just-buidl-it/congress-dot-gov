@@ -1,3 +1,4 @@
+import nock from 'nock';
 import { AmendmentClient } from './amendment';
 import {
   AmendmentSchema,
@@ -8,9 +9,9 @@ import {
 } from '../schemas/amendment';
 import { AmendmentType } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('AmendmentClient Integration Tests', () => {
+describe('AmendmentClient', () => {
   let client: AmendmentClient;
 
   beforeAll(() => {
@@ -19,6 +20,10 @@ describe('AmendmentClient Integration Tests', () => {
 
   describe('getAmendments', () => {
     it('should return amendments matching the Amendment interface', async () => {
+
+      nock('https://api.congress.gov')
+        .get('/v3/amendment?limit=5')
+
       const { amendments } = await client.getAmendments({ limit: 5 });
 
       expect(Array.isArray(amendments)).toBe(true);
