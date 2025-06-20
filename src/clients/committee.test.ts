@@ -9,9 +9,9 @@ import {
 import { ListCommitteeReportSchema } from '../schemas/committee-report';
 import { Chamber } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('CommitteeClient Integration Tests', () => {
+describe('CommitteeClient Tests', () => {
   let client: CommitteeClient;
 
   beforeAll(() => {

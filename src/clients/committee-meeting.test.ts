@@ -5,9 +5,9 @@ import {
 } from '../schemas/committee-meeting';
 import { Chamber } from '../schemas/constants';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('CommitteeMeetingClient Integration Tests', () => {
+describe('CommitteeMeetingClient Tests', () => {
   let client: CommitteeMeetingClient;
 
   beforeAll(() => {

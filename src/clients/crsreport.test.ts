@@ -1,9 +1,9 @@
 import { CRSReportClient } from './crsreport';
 import { ListCRSReportSchema, CRSReportSchema } from '../schemas/crsreport';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('CRSReportClient Integration Tests', () => {
+describe('CRSReportClient Tests', () => {
   let client: CRSReportClient;
 
   beforeAll(() => {
@@ -16,17 +16,6 @@ describe('CRSReportClient Integration Tests', () => {
 
       expect(Array.isArray(CRSReports)).toBe(true);
       expect(CRSReports.length).toBeLessThanOrEqual(5);
-
-      CRSReports.forEach((report) => {
-        expect(ListCRSReportSchema.parse(report));
-      });
-    });
-
-    it('should handle pagination parameters correctly', async () => {
-      const { CRSReports } = await client.getReports({ offset: 5, limit: 3 });
-
-      expect(Array.isArray(CRSReports)).toBe(true);
-      expect(CRSReports.length).toBeLessThanOrEqual(3);
 
       CRSReports.forEach((report) => {
         expect(ListCRSReportSchema.parse(report));

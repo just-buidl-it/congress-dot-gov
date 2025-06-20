@@ -1,9 +1,9 @@
 import { CongressionalRecordClient } from './congressional-record';
 import { CongressionalRecordSchema } from '../schemas/congressional-record';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('CongressionalRecordClient Integration Tests', () => {
+describe('CongressionalRecordClient Tests', () => {
   let client: CongressionalRecordClient;
 
   beforeAll(() => {

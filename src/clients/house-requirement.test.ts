@@ -5,9 +5,9 @@ import {
   MatchingCommunicationsSchema,
 } from '../schemas/house-requirement';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || '';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('HouseRequirementClient Integration Tests', () => {
+describe('HouseRequirementClient Tests', () => {
   let client: HouseRequirementClient;
 
   beforeAll(() => {

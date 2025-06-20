@@ -6,9 +6,9 @@ import {
   TreatyCommitteeSchema,
 } from '../schemas/treaty';
 
-const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'DEMO_KEY';
+const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
-describe('TreatyClient Integration Tests', () => {
+describe('TreatyClient Tests', () => {
   let client: TreatyClient;
 
   beforeAll(() => {
