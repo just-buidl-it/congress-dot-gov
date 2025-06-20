@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.6](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.5...0.2.6) (2025-06-20)
+
+### Bug Fixes
+
+* update baseUrl constructor argument to endpoint ([57c8b1a](https://github.com/just-buidl-it/congress-dot-gov/commit/57c8b1a8032efb632c5ceb48da58da2bafee2f88))
+
 ## [0.2.5](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.4...0.2.5) (2025-06-14)
 
 ### Bug Fixes
