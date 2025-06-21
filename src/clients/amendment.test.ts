@@ -5,7 +5,7 @@ import {
   AmendmentActionSchema,
   AmendmentCosponsorSchema,
   AmendmentTextSchema,
-  ListAmendmentSchema,
+  AmendmentSummarySchema,
 } from '../schemas/amendment';
 import { AmendmentType } from '../schemas/constants';
 
@@ -20,9 +20,7 @@ describe('AmendmentClient', () => {
 
   describe('getAmendments', () => {
     it('should return amendments matching the Amendment interface', async () => {
-
-      nock('https://api.congress.gov')
-        .get('/v3/amendment?limit=5')
+      nock('https://api.congress.gov').get('/v3/amendment?limit=5');
 
       const { amendments } = await client.getAmendments({ limit: 5 });
 
@@ -30,7 +28,7 @@ describe('AmendmentClient', () => {
       expect(amendments.length).toBeLessThanOrEqual(5);
 
       amendments.forEach((amendment) => {
-        expect(ListAmendmentSchema.parse(amendment));
+        expect(AmendmentSummarySchema.parse(amendment));
       });
     });
   });
@@ -43,7 +41,7 @@ describe('AmendmentClient', () => {
       expect(amendments.length).toBeLessThanOrEqual(5);
 
       amendments.forEach((amendment) => {
-        expect(ListAmendmentSchema.parse(amendment));
+        expect(AmendmentSummarySchema.parse(amendment));
         expect(amendment.congress).toBe(117);
       });
     });
@@ -61,7 +59,7 @@ describe('AmendmentClient', () => {
       expect(amendments.length).toBeLessThanOrEqual(5);
 
       amendments.forEach((amendment) => {
-        expect(ListAmendmentSchema.parse(amendment));
+        expect(AmendmentSummarySchema.parse(amendment));
       });
     });
   });
@@ -69,6 +67,7 @@ describe('AmendmentClient', () => {
   describe('getAmendment', () => {
     it('should return detailed amendment information', async () => {
       const { amendment } = await client.getAmendment(117, AmendmentType.SAMDT, '1');
+      console.log(amendment);
       expect(AmendmentSchema.parse(amendment));
     });
   });

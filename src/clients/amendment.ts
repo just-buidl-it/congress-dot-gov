@@ -1,3 +1,7 @@
+/**
+ * @packageDocumentation
+ * Client for the `amendment` endpoints.
+ */
 import { BaseClient } from './base';
 import type {
   PaginationParams,
@@ -6,7 +10,7 @@ import type {
   PaginatedResponse,
 } from '../types';
 import type {
-  ListAmendment,
+  AmendmentSummary,
   Amendment,
   AmendmentAction,
   AmendmentCosponsor,
@@ -25,7 +29,7 @@ export class AmendmentClient extends BaseClient {
    * @returns A list of amendments sorted by date of latest action
    */
   async getAmendments(params: PaginationParams & DateFilterParams = {}) {
-    return this.get<PaginatedResponse<{ amendments: ListAmendment[] }>>('', params);
+    return this.get<PaginatedResponse<{ amendments: AmendmentSummary[] }>>('', params);
   }
 
   /**
@@ -38,7 +42,7 @@ export class AmendmentClient extends BaseClient {
     congress: number,
     params: PaginationParams & DateFilterParams = {},
   ) {
-    return this.get<PaginatedResponse<{ amendments: ListAmendment[] }>>(
+    return this.get<PaginatedResponse<{ amendments: AmendmentSummary[] }>>(
       `/${congress}`,
       params,
     );
@@ -56,7 +60,7 @@ export class AmendmentClient extends BaseClient {
     amendmentType: AmendmentType,
     params: PaginationParams & DateFilterParams = {},
   ) {
-    return this.get<PaginatedResponse<{ amendments: ListAmendment[] }>>(
+    return this.get<PaginatedResponse<{ amendments: AmendmentSummary[] }>>(
       `/${congress}/${amendmentType.toLowerCase()}`,
       params,
     );
