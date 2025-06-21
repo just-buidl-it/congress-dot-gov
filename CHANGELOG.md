@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0](https://github.com/just-buidl-it/congress-dot-gov/compare/0.3.0...0.4.0) (2025-06-21)
+
+### Features
+
+* add url search param parsing ([b5f9bf5](https://github.com/just-buidl-it/congress-dot-gov/commit/b5f9bf572c1de1b1da4c4decf47183756d8d2f8e))
+
 ## [0.3.0](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.8...0.3.0) (2025-06-21)
 
 ### Features
