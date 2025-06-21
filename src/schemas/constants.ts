@@ -49,6 +49,19 @@ export enum SenateBillType {
   SRES = 'SRES',
 }
 
+export enum ActionType {
+  COMMITTEE = 'Committee',
+  FLOOR = 'Floor',
+  INTRO_REFERRAL = 'IntroReferral',
+  RESOLVING_DIFFERENCES = 'ResolvingDifferences',
+  NOT_USED = 'NotUsed',
+}
+
+export enum AmendmentTextType {
+  SUBMITTED = 'Submitted',
+  MODIFIED = 'Modified',
+}
+
 export enum BillType {
   S = 'S',
   SJRES = 'SJRES',
