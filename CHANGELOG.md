@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.8...0.3.0) (2025-06-21)
+
+### Features
+
+* return rate limit information with response ([008c5f6](https://github.com/just-buidl-it/congress-dot-gov/commit/008c5f6d852f921814c241f907056832aa7aff78))
+
 ## [0.2.8](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.7...0.2.8) (2025-06-21)
 
 ## [0.2.7](https://github.com/just-buidl-it/congress-dot-gov/compare/0.2.6...0.2.7) (2025-06-20)
