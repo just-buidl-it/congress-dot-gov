@@ -32,7 +32,7 @@ export interface DateFilterParams {
 
 export interface SortParams {
   // The field to sort by.
-  sort?: string;
+  sort?: 'updateDate+asc' | 'updateDate+desc';
 }
 
 export interface BasePaginatedResponse {
