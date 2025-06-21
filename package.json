@@ -1,6 +1,6 @@
 {
   "name": "congress-dot-gov",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "TypeScript SDK for the Congress.gov API",
   "author": "Corey Rice",
   "license": "MIT",
