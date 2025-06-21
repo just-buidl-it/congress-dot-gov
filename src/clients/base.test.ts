@@ -1,5 +1,6 @@
-import { BaseClient } from './base';
+import { BaseClient, CongressGovURLSearchParams } from './base';
 import { RateLimitExceededError, CongressGovApiError } from '../utils/errors';
+import { Format } from '../types';
 
 let fetchSpy: jest.SpyInstance;
 
@@ -25,6 +26,44 @@ describe('BaseClient', () => {
 
   afterEach(() => {
     jest.restoreAllMocks();
+  });
+
+  describe('CongressGovURLSearchParams', () => {
+    it('should convert params object to URLSearchParams', () => {
+      const params = {
+        limit: 20,
+        offset: 0,
+        format: Format.JSON
+      };
+
+      const searchParams = new CongressGovURLSearchParams(params);
+      expect(searchParams.toUrlSearchParams()).toBe('limit=20&offset=0&format=json');
+    });
+
+    it('should handle empty params object', () => {
+      const searchParams = new CongressGovURLSearchParams({});
+      expect(searchParams.toUrlSearchParams()).toBe('');
+    });
+
+    it('should handle params with undefined values', () => {
+      const params = {
+        limit: 20,
+        format: undefined
+      };
+
+      const searchParams = new CongressGovURLSearchParams(params);
+      expect(searchParams.toUrlSearchParams()).toBe('limit=20');
+    });
+
+    it('should handle date params', () => { 
+      const params = {
+        fromDateTime: new Date('2021-01-01'),
+        toDateTime: new Date('2021-12-31')
+      };
+
+      const searchParams = new CongressGovURLSearchParams(params);
+      expect(searchParams.toUrlSearchParams()).toBe('fromDateTime=2021-01-01T00%3A00%3A00Z&toDateTime=2021-12-31T00%3A00%3A00Z');
+    });
   });
 
   describe('Constructor', () => {

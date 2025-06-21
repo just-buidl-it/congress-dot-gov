@@ -25,9 +25,9 @@ export interface PaginationParams extends BaseParams {
 
 export interface DateFilterParams {
   // The starting timestamp to filter by update date. Use format: YYYY-MM-DDT00:00:00Z.
-  fromDateTime?: string;
+  fromDateTime?: string | Date;
   // The ending timestamp to filter by update date. Use format: YYYY-MM-DDT00:00:00Z.
-  toDateTime?: string;
+  toDateTime?: string | Date;
 }
 
 export interface SortParams {

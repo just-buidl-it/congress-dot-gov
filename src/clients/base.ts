@@ -1,4 +1,10 @@
 import 'whatwg-fetch';
+import type {
+  PaginationParams,
+  BaseParams,
+  DateFilterParams,
+  SortParams,
+} from '../types';
 import { RateLimitExceededError, CongressGovApiError, CongressGovSdkError } from '../utils/errors';
 
 export interface CongressGovConfig {
@@ -9,6 +15,40 @@ export interface CongressGovConfig {
 export interface RateLimitInfo {
   limit: number;
   remaining: number;
+}
+
+type Params = Partial<PaginationParams & BaseParams & DateFilterParams & SortParams>
+
+export class CongressGovURLSearchParams {
+  private _params: Params;
+
+  constructor(params: Params) {
+    this._params = params;
+  }
+
+  get params(): Record<string, string> {
+    return Object.fromEntries(Object.entries(this._params).reduce((acc, [key, value]) => {
+      if (value !== undefined) {
+        if (key === 'fromDateTime' || key === 'toDateTime') {
+         acc.push([key, this.formatDateTime(value as Date | string)]);
+        } else {
+          acc.push([key, value.toString()]);
+        }
+      }
+      return acc;
+    }, [] as [string, string][]));
+  }
+
+  formatDateTime(date: Date | string): string {
+    if (typeof date === 'string') {
+      date = new Date(date);
+    }
+    return date.toISOString().slice(0, 19) + 'Z';
+  }
+
+  toUrlSearchParams(): string {
+    return new URLSearchParams(this.params).toString();
+  }
 }
 
 export class BaseClient {
@@ -26,11 +66,10 @@ export class BaseClient {
     this.endpoint = endpoint;
   }
 
-  protected async get<T>(endpoint: string, params: object): Promise<T & { rateLimit: RateLimitInfo }> {
+  protected async get<T>(endpoint: string, params: Params): Promise<T & { rateLimit: RateLimitInfo }> {
+    const searchParams = new CongressGovURLSearchParams(params);
     const url = new URL(`/v3${this.endpoint}${endpoint}`, this.baseUrl);
-    Object.entries(params).forEach(([key, value]) => {
-      url.searchParams.append(key, String(value));
-    });
+    url.search = searchParams.toUrlSearchParams();
     const response = await fetch(url, {
       headers: {
         'X-API-Key': this.apiKey,

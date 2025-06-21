@@ -5,7 +5,7 @@ import { CongressDotGovClient } from '../src/congress-dot-gov';
 import { AmendmentType, BillType, Chamber, CommitteeReportType, CommunicationTypeCode, LawType } from '../src/schemas/constants';
 
 const fixturesDir = path.join(__dirname, '..', 'fixtures');
-const fixturePath = path.join(fixturesDir, 'nock.json')
+const fixturePath = path.join(fixturesDir, 'dnock.json')
 
 const API_KEY = process.env.CONGRESS_GOV_API_KEY as string;
 
@@ -30,6 +30,7 @@ const main = async () => {
     client.amendment.getAmendmentText(117, AmendmentType.SAMDT, '1'),
     // Bill
     client.bill.getBills({ limit: 5 }),
+    client.bill.getBills({ limit: 5, sort: 'updateDate+desc', fromDateTime: new Date('2024-01-01'), toDateTime: new Date('2024-12-31') }),
     client.bill.getBillsByCongress(117, { limit: 5 }),
     client.bill.getBillsByCongressAndType(117, BillType.HR, { limit: 5 }),
     client.bill.getBill(117, BillType.HR, '1'),
