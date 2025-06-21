@@ -36,6 +36,13 @@ describe('BillClient Tests', () => {
         expect(ListBillSchema.parse(bill));
       });
     });
+
+    it('should query by date range', async () => {
+      const { bills } = await client.getBills({ limit: 5, sort: 'updateDate+desc', fromDateTime: new Date('2024-01-01'), toDateTime: new Date('2024-12-31') });
+
+      expect(Array.isArray(bills)).toBe(true);
+      expect(bills.length).toBeLessThanOrEqual(5);
+    });
   });
 
   describe('getBillByCongress', () => {
