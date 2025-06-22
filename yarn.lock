@@ -5908,10 +5908,10 @@ typedoc-github-theme@^0.3.0:
   resolved "https://registry.yarnpkg.com/typedoc-github-theme/-/typedoc-github-theme-0.3.0.tgz#9fbc2f54acc3034748825ee9bf28547a4513680f"
   integrity sha512-7HzKJt8ZZSTNYczK8BcZZbpr7GsyTZgsoLFKtO4NYxXOb7mSr92yTj7hl16ind0WsOzxPo2DZGjkUH2VoPrdxg==
 
-typedoc-plugin-zod@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-zod/-/typedoc-plugin-zod-1.4.1.tgz#b46e9743caa2d6952b2d0c9ce19ea0485d992bea"
-  integrity sha512-D7+uhPFCyKMcKnUSZip/BldE08Jo/yykvbxlIcY11fI8dKyCe23/igOiZ7rPW2mXD5N9kHEA2he9LkCoU+6HtA==
+typedoc-plugin-zod@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-zod/-/typedoc-plugin-zod-1.4.2.tgz#338287fef9d4fec872dd95e6162056f6af386aa7"
+  integrity sha512-DERrqbKyW1DAWgs+L3sgCTxrVJQuHg4whj0FZcXWIVdwtoYYSnxK2XSS9gepBwyRwlojjVux1ZjSPwDsWz9ulg==
 
 typedoc@^0.25.2:
   version "0.25.13"
