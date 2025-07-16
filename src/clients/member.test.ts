@@ -1,10 +1,9 @@
 import { MemberClient } from './member';
 import {
-  ListMemberSchema,
-  MemberSchema,
+  MemberSummarySchema,
+  MemberDetailSchema,
   SponsoredLegislationSchema,
   CoSponsoredLegislationSchema,
-  CongressMemberSchema,
 } from '../schemas/member';
 
 const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
@@ -24,7 +23,7 @@ describe('MemberClient Tests', () => {
       expect(members.length).toBeLessThanOrEqual(5);
 
       members.forEach((member) => {
-        expect(ListMemberSchema.parse(member));
+        expect(MemberSummarySchema.parse(member));
       });
     });
   });
@@ -33,7 +32,7 @@ describe('MemberClient Tests', () => {
     it('should return detailed member information', async () => {
       const { member } = await client.getMember('L000174');
 
-      expect(MemberSchema.parse(member));
+      expect(MemberDetailSchema.parse(member));
     });
   });
 
@@ -68,15 +67,15 @@ describe('MemberClient Tests', () => {
     });
   });
 
-  describe('getMembersByCongress', () => {
+  describe('getMembersByCurrentCongress', () => {
     it('should return members for a specific congress', async () => {
-      const { members } = await client.getMembersByCongress(117, { limit: 5 });
+      const { members } = await client.getMembersByCurrentCongress(117, { limit: 5 });
 
       expect(Array.isArray(members)).toBe(true);
       expect(members.length).toBeLessThanOrEqual(5);
 
       members.forEach((member) => {
-        expect(CongressMemberSchema.parse(member));
+        expect(MemberSummarySchema.parse(member));
       });
     });
   });
@@ -89,7 +88,7 @@ describe('MemberClient Tests', () => {
       expect(members.length).toBeLessThanOrEqual(5);
 
       members.forEach((member) => {
-        expect(CongressMemberSchema.parse(member));
+        expect(MemberSummarySchema.parse(member));
       });
     });
   });
@@ -104,7 +103,7 @@ describe('MemberClient Tests', () => {
       expect(members.length).toBeLessThanOrEqual(5);
 
       members.forEach((member) => {
-        expect(CongressMemberSchema.parse(member));
+        expect(MemberSummarySchema.parse(member));
       });
     });
   });
@@ -122,7 +121,7 @@ describe('MemberClient Tests', () => {
       expect(members.length).toBeLessThanOrEqual(5);
 
       members.forEach((member) => {
-        expect(CongressMemberSchema.parse(member));
+        expect(MemberSummarySchema.parse(member));
       });
     });
   });
