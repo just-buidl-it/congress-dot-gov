@@ -57,6 +57,19 @@ export enum ActionType {
   NOT_USED = 'NotUsed',
 }
 
+export enum BillActionType {
+  COMMITTEE = 'Committee',
+  CALENDARS = 'Calendars',
+  FLOOR = 'Floor',
+  BECAME_LAW = 'BecameLaw',
+  INTRO_REFERRAL = 'IntroReferral',
+  PRESIDENT = 'President',
+  RESOLVING_DIFFERENCES = 'ResolvingDifferences',
+  DISCHARGE = 'Discharge',
+  NOT_USED = 'NotUsed',
+  VETO = 'Veto',
+}
+
 export enum AmendmentTextType {
   SUBMITTED = 'Submitted',
   MODIFIED = 'Modified',
@@ -195,6 +208,11 @@ export enum SourceSystemName {
   HOUSE_COMMITTEE_ACTIONS = 'House committee actions',
   HOUSE_FLOOR_ACTIONS = 'House floor actions',
   LIBRARY_OF_CONGRESS = 'Library of Congress',
+}
+
+export enum LawType {
+  PUBLIC_LAW = 'Public Law',
+  PRIVATE_LAW = 'Private Law',
 }
 
 export enum StateName {
