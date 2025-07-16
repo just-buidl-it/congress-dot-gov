@@ -31,7 +31,7 @@
  *   console.error(error);
  * }
  */
-import { z } from 'zod';
+import { z } from 'zod/v4';
 import { CongressChamber, Session } from './constants';
 
 /**
@@ -51,23 +51,23 @@ export const CongressSummarySchema = z.strictObject({
   sessions: z.array(
     z.strictObject({
       /** The chamber associated with the session of congress. Possible values are "House of Representatives" and "Senate". */
-      chamber: z.nativeEnum(CongressChamber),
+      chamber: z.enum(CongressChamber),
       /** The type of session. Possible values are "R" and "S" where "R" stands for "Regular" and "S" stands for "Special". */
-      type: z.nativeEnum(Session),
+      type: z.enum(Session),
       /** The assigned session's number. For special sessions, this value is suppressed. */
       number: z.number().optional(),
       /** The start date of the session. (e.g. 2019-01-03 */
-      startDate: z.string(),
+      startDate: z.iso.date(),
       /** The specific end date of the session. This value is specified for legislative research.
        * See [Past Days in Session](https://www.congress.gov/past-days-in-session) for more information about past days in session of legislative sessions.
        */
-      endDate: z.string().optional(),
+      endDate: z.iso.date().optional(),
     }),
   ),
   /** A referrer URL to the congress item in the API. */
-  url: z.string(),
+  url: z.url(),
   /** The date of update in Congress.gov. (e.g. 2019-01-03T18:37:12Z) */
-  updateDate: z.string(),
+  updateDate: z.iso.datetime(),
 });
 
 /**
@@ -89,23 +89,23 @@ export const CongressSchema = z.strictObject({
   sessions: z.array(
     z.strictObject({
       /** The chamber associated with the session of congress. Possible values are "House of Representatives" and "Senate". */
-      chamber: z.nativeEnum(CongressChamber),
+      chamber: z.enum(CongressChamber),
       /** The type of session. Possible values are "R" and "S" where "R" stands for "Regular" and "S" stands for "Special". */
-      type: z.nativeEnum(Session),
+      type: z.enum(Session),
       /** The assigned session's number. For special sessions, this value is suppressed. */
       number: z.number(),
       /** The start date of the session. (e.g. 2019-01-03 */
-      startDate: z.string(),
+      startDate: z.iso.date(),
       /** The specific end date of the session. This value is specified for legislative research.
        * See [Past Days in Session](https://www.congress.gov/past-days-in-session) for more information about past days in session of legislative sessions.
        */
-      endDate: z.string().optional(),
+      endDate: z.iso.date().optional(),
     }),
   ),
   /** A referrer URL to the congress item in the API. */
-  url: z.string(),
+  url: z.url(),
   /** The date of update in Congress.gov. (e.g. 2019-01-03T18:37:12Z) */
-  updateDate: z.string(),
+  updateDate: z.iso.datetime(),
 });
 
 /**
