@@ -6,6 +6,8 @@ Detailed documentation of the schemas can be found on the [Library of Congress g
 
 Available methods can be previewed on the [Swagger docs](https://api.congress.gov/#/);
 
+[SDK Docs](https://just-buidl-it.io/congress-dot-gov/)
+
 ## Installation
 
 ```bash
