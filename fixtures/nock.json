@@ -2414,7 +2414,7 @@
   {
     "scope": "https://api.congress.gov:443",
     "method": "GET",
-    "path": "/v3/member/congress/117?limit=5",
+    "path": "/v3/member/congress/117?limit=5&currentMember=true",
     "body": "",
     "status": 200,
     "response": [
