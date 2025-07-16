@@ -7,7 +7,7 @@ import type {
   SortParams,
 } from '../types';
 import type {
-  ListBill,
+  BillSummary,
   Bill,
   BillAction,
   BillAmendment,
@@ -15,7 +15,7 @@ import type {
   BillCosponsor,
   RelatedBill,
   BillSubject,
-  BillSummary,
+  BillSummaryVersion,
   BillText,
   BillTitle,
   Law,
@@ -33,7 +33,7 @@ export class BillClient extends BaseClient {
    * @returns A list of bills sorted by date of latest action
    */
   async getBills(params: PaginationParams & DateFilterParams & SortParams = {}) {
-    return this.get<PaginatedResponse<{ bills: ListBill[] }>>('/bill', params);
+    return this.get<PaginatedResponse<{ bills: BillSummary[] }>>('/bill', params);
   }
 
   /**
@@ -46,7 +46,7 @@ export class BillClient extends BaseClient {
     congress: number,
     params: PaginationParams & DateFilterParams & SortParams = {},
   ) {
-    return this.get<PaginatedResponse<{ bills: ListBill[] }>>(
+    return this.get<PaginatedResponse<{ bills: BillSummary[] }>>(
       `/bill/${congress}`,
       params,
     );
@@ -64,7 +64,7 @@ export class BillClient extends BaseClient {
     billType: BillType,
     params: PaginationParams & DateFilterParams & SortParams = {},
   ) {
-    return this.get<PaginatedResponse<{ bills: ListBill[] }>>(
+    return this.get<PaginatedResponse<{ bills: BillSummary[] }>>(
       `/bill/${congress}/${billType.toLowerCase()}`,
       params,
     );
@@ -224,7 +224,7 @@ export class BillClient extends BaseClient {
     billNumber: string,
     params: PaginationParams = {},
   ) {
-    return this.get<PaginatedResponse<{ summaries: BillSummary[] }>>(
+    return this.get<PaginatedResponse<{ summaries: BillSummaryVersion[] }>>(
       `/bill/${congress}/${billType.toLowerCase()}/${billNumber}/summaries`,
       params,
     );

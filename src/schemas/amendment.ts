@@ -63,9 +63,9 @@ const AmendmentSummaryBaseSchema = z.strictObject({
 const amendmentTypeEnum = z.enum(AmendmentType);
 
 /**
-* Zod schema for validating entities returned from the `/amendment`, `/amendment/{congress}/{amendmentType}`, and `/amendment/{congress}` list endpoints.
-* @ignore
-*/
+ * Zod schema for validating entities returned from the `/amendment`, `/amendment/{congress}/{amendmentType}`, and `/amendment/{congress}` list endpoints.
+ * @ignore
+ */
 export const AmendmentSummarySchema = z.discriminatedUnion('type', [
   z.object({
     ...AmendmentSummaryBaseSchema.shape,
@@ -73,245 +73,243 @@ export const AmendmentSummarySchema = z.discriminatedUnion('type', [
     description: z.string(),
     type: amendmentTypeEnum.extract([AmendmentType.HAMDT]),
   }),
-  z
-    .strictObject({
-      ...AmendmentSummaryBaseSchema.shape,
-      type: amendmentTypeEnum.extract([AmendmentType.SAMDT]),
-    }),
-  z
-    .strictObject({
-      ...AmendmentSummaryBaseSchema.shape,
-      type: amendmentTypeEnum.extract([AmendmentType.SUAMDT]),
-    }),
+  z.strictObject({
+    ...AmendmentSummaryBaseSchema.shape,
+    type: amendmentTypeEnum.extract([AmendmentType.SAMDT]),
+  }),
+  z.strictObject({
+    ...AmendmentSummaryBaseSchema.shape,
+    type: amendmentTypeEnum.extract([AmendmentType.SUAMDT]),
+  }),
 ]);
 
-const AmendmentDetailBaseSchema = z.strictObject({
-  ...AmendmentSummaryBaseSchema.shape,
-  /** the latest action taken on the amendment */
-  latestAction: z
-    .strictObject({
-      /** The date of the latest action taken on the amendment. (e.g. 2021-08-08) */
-      actionDate: z.iso.date(),
-      /** The text of the latest action taken on the amendment. (e.g. Amendment SA 2137 agreed to in Senate by Yea-Nay Vote. 69 - 28. Record Vote Number: 312.) */
-      text: z.string(),
-      /** The time of the latest action taken on the amendment.
-       * Certain actions taken by the House contain this element.
-       */
-      actionTime: z.iso.time().optional(),
-      /** ** Not documented** */
-      links: z.array(
-        z.strictObject({
-          url: z.string(),
-          name: z.string(),
-        }),
-      ),
-    })
-    .optional(),
-  /** */
-  actions: z.strictObject({
-    /** The number of actions on the amendment. A count element may include actions from the House, Senate, and Library of Congress. */
-    count: z.number(),
-    /** A referrer URL to the actions level of the amendment */
-    url: z.url(),
-  }),
-  /** The sponsor of the amendment. */
-  sponsors: z.array(
-    z.strictObject({
-      /** The unique identifier for the amendment's sponsor, as assigned in the [Biographical Directory of the United States Congress, 1774-Present](https://bioguide.congress.gov/).
-       * View a [field values list of Bioguide identifiers](https://www.congress.gov/help/field-values/member-bioguide-ids) for current and former members in Congress.gov.
-       */
-      bioguideId: z.string(),
-      /** The first name of the amendment's sponsor. (e.g. Kyrsten) */
-      firstName: z.string(),
-      /** The display name of the amendment's sponsor. (e.g. Sen. Sinema, Kyrsten [D-AZ]) */
-      fullName: z.string(),
-      /** The middle name or initial of the amendment's sponsor. */
-      middleName: z.string().optional(),
-      /** The last name of the amendment's sponsor. (e.g. Sinema) */
-      lastName: z.string(),
-      /** The party code of the amendment's sponsor. (e.g. D) */
-      party: z.enum(PartyCode).optional(),
-      /** A two-letter abbreviation for the state, territory, or district represented by the amendment's sponsor. (e.g. AZ) */
-      state: z.enum(StateCode).optional(),
-      /**  The congressional district that the amendment's sponsor represents.
-       *   Note that this element will be empty for Senate sponsors and will be "0" for states, territories, or districts where there is only one congressional district.
-       */
-      district: z.number().optional(),
-      /**  A referrer URL to the member item in the API. (e.g. https://api.congress.gov/v3/member/S001191) */
+const AmendmentDetailBaseSchema = z
+  .strictObject({
+    ...AmendmentSummaryBaseSchema.shape,
+    /** the latest action taken on the amendment */
+    latestAction: z
+      .strictObject({
+        /** The date of the latest action taken on the amendment. (e.g. 2021-08-08) */
+        actionDate: z.iso.date(),
+        /** The text of the latest action taken on the amendment. (e.g. Amendment SA 2137 agreed to in Senate by Yea-Nay Vote. 69 - 28. Record Vote Number: 312.) */
+        text: z.string(),
+        /** The time of the latest action taken on the amendment.
+         * Certain actions taken by the House contain this element.
+         */
+        actionTime: z.iso.time().optional(),
+        /** ** Not documented** */
+        links: z.array(
+          z.strictObject({
+            url: z.string(),
+            name: z.string(),
+          }),
+        ),
+      })
+      .optional(),
+    /** */
+    actions: z.strictObject({
+      /** The number of actions on the amendment. A count element may include actions from the House, Senate, and Library of Congress. */
+      count: z.number(),
+      /** A referrer URL to the actions level of the amendment */
       url: z.url(),
     }),
-  ),
-  /** the person who submitted and/or proposed the amendment on behalf of the sponsor of the amendment. */
-  onBehalfOfSponsor: z
-    .strictObject({
-      /** The unique identifier for the amendment's sponsor, as assigned in the [Biographical Directory of the United States Congress, 1774-Present](https://bioguide.congress.gov/).
-       * View a [field values list of Bioguide identifiers](https://www.congress.gov/help/field-values/member-bioguide-ids) for current and former members in Congress.gov.
-       */
-      bioguideId: z.string(),
-      /** The first name of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor.
-       * (e.g. Kyrsten)
-       */
-      firstName: z.string(),
-      /** The display name of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor
-       * (e.g. Sen. Sinema, Kyrsten [D-AZ])
-       */
-      fullName: z.string(),
-      /** The middle name or initial of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor. */
-      middleName: z.string().optional(),
-      /** The last name of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor. (e.g. Sinema) */
-      lastName: z.string(),
-      /** The party code of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor. (e.g. D) */
-      party: z.enum(PartyName).optional(),
-      /** A two-letter abbreviation for the state, territory, or district represented by the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor. (e.g. AZ) */
-      state: z.enum(StateCode).optional(),
-      /** The congressional district that the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor represents.
-       * Note that this element will be empty for Senate sponsors and will be "0" for states, territories, or districts where there is only one congressional district.
-       */
-      district: z.number().optional(),
-      /** The type of on behalf of sponsor action. This can be "Submitted on behalf of" the sponsor and/or "Proposed on behalf of" the sponsor. */
-      type: z.enum(OnBehalfOfSponsorAction).optional(),
-      /** A referrer URL to the member item in the API. (e.g. https://api.congress.gov/v3/member/S001191) */
-      url: z.string(),
-    })
-    .optional(),
-  /** The chamber in which the amendment was submitted or offered. (e.g. Senate) */
-  chamber: z.enum(Chamber),
-  /** The date the amendment was proposed on the floor. (e.g. 2021-08-01T04:00:00Z)
-   * This element will only be populated for proposed Senate amendments.
-   */
-  proposedDate: z.iso.datetime().optional(),
-  /** Notes attached to the amendment on Congress.gov. The note may contain supplemental information about the amendment that users may find helpful.
-   * Read more [about notes](https://www.congress.gov/help/legislative-glossary#glossary_notes) on Congress.gov.
-   */
-  notes: z.string().optional(),
-  /** The date the amendment was submitted or offered. (e.g. 2021-08-01T04:00:00Z) */
-  submittedDate: z.iso.datetime().optional(),
-  /** **Not documented** */
-  textVersions: z.strictObject({
-    url: z.url(),
-    count: z.number(),
-    formats: z
-      .array(
-        z.strictObject({
-          type: z.string(),
-          url: z.url(),
-        }),
-      )
+    /** The sponsor of the amendment. */
+    sponsors: z.array(
+      z.strictObject({
+        /** The unique identifier for the amendment's sponsor, as assigned in the [Biographical Directory of the United States Congress, 1774-Present](https://bioguide.congress.gov/).
+         * View a [field values list of Bioguide identifiers](https://www.congress.gov/help/field-values/member-bioguide-ids) for current and former members in Congress.gov.
+         */
+        bioguideId: z.string(),
+        /** The first name of the amendment's sponsor. (e.g. Kyrsten) */
+        firstName: z.string(),
+        /** The display name of the amendment's sponsor. (e.g. Sen. Sinema, Kyrsten [D-AZ]) */
+        fullName: z.string(),
+        /** The middle name or initial of the amendment's sponsor. */
+        middleName: z.string().optional(),
+        /** The last name of the amendment's sponsor. (e.g. Sinema) */
+        lastName: z.string(),
+        /** The party code of the amendment's sponsor. (e.g. D) */
+        party: z.enum(PartyCode).optional(),
+        /** A two-letter abbreviation for the state, territory, or district represented by the amendment's sponsor. (e.g. AZ) */
+        state: z.enum(StateCode).optional(),
+        /**  The congressional district that the amendment's sponsor represents.
+         *   Note that this element will be empty for Senate sponsors and will be "0" for states, territories, or districts where there is only one congressional district.
+         */
+        district: z.number().optional(),
+        /**  A referrer URL to the member item in the API. (e.g. https://api.congress.gov/v3/member/S001191) */
+        url: z.url(),
+      }),
+    ),
+    /** the person who submitted and/or proposed the amendment on behalf of the sponsor of the amendment. */
+    onBehalfOfSponsor: z
+      .strictObject({
+        /** The unique identifier for the amendment's sponsor, as assigned in the [Biographical Directory of the United States Congress, 1774-Present](https://bioguide.congress.gov/).
+         * View a [field values list of Bioguide identifiers](https://www.congress.gov/help/field-values/member-bioguide-ids) for current and former members in Congress.gov.
+         */
+        bioguideId: z.string(),
+        /** The first name of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor.
+         * (e.g. Kyrsten)
+         */
+        firstName: z.string(),
+        /** The display name of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor
+         * (e.g. Sen. Sinema, Kyrsten [D-AZ])
+         */
+        fullName: z.string(),
+        /** The middle name or initial of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor. */
+        middleName: z.string().optional(),
+        /** The last name of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor. (e.g. Sinema) */
+        lastName: z.string(),
+        /** The party code of the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor. (e.g. D) */
+        party: z.enum(PartyName).optional(),
+        /** A two-letter abbreviation for the state, territory, or district represented by the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor. (e.g. AZ) */
+        state: z.enum(StateCode).optional(),
+        /** The congressional district that the senator who submitted and/or proposed the amendment on behalf of the sponsor of the amendment amendment's sponsor represents.
+         * Note that this element will be empty for Senate sponsors and will be "0" for states, territories, or districts where there is only one congressional district.
+         */
+        district: z.number().optional(),
+        /** The type of on behalf of sponsor action. This can be "Submitted on behalf of" the sponsor and/or "Proposed on behalf of" the sponsor. */
+        type: z.enum(OnBehalfOfSponsorAction).optional(),
+        /** A referrer URL to the member item in the API. (e.g. https://api.congress.gov/v3/member/S001191) */
+        url: z.string(),
+      })
       .optional(),
-  }),
-  /** The bill amended by the amendment */
-  amendedBill: z.strictObject({
-    /** The congress during which the bill or resolution was introduced or submitted. e.g. 117) */
-    congress: z.number(),
-    /** The assigned bill or resolution number. */
-    number: z.string(),
-    /** The chamber of origin where a bill or resolution was introduced or submitted.
-     * Possible values are "House" and "Senate".
+    /** The chamber in which the amendment was submitted or offered. (e.g. Senate) */
+    chamber: z.enum(Chamber),
+    /** The date the amendment was proposed on the floor. (e.g. 2021-08-01T04:00:00Z)
+     * This element will only be populated for proposed Senate amendments.
      */
-    originChamber: z.enum(Chamber),
-    /** The code for the chamber of origin where the bill or resolution was introduced or submitted.
-     * Possible values are "H" and "S".
+    proposedDate: z.iso.datetime().optional(),
+    /** Notes attached to the amendment on Congress.gov. The note may contain supplemental information about the amendment that users may find helpful.
+     * Read more [about notes](https://www.congress.gov/help/legislative-glossary#glossary_notes) on Congress.gov.
      */
-    originChamberCode: z.enum(ChamberCode),
-    /** The display title for the bill or resolution on Congress.gov. */
-    title: z.string(),
-    /** The type of bill or resolution.
-     *  Possible values are "HR", "S", "HJRES", "SJRES", "HCONRES", "SCONRES", "HRES", and "SRES".
-     */
-    type: z.enum(BillType),
-    /** A referrer URL to the bill or resolution item in the API */
-    url: z.url(),
-    /** **Not Documented** */
-    updateDateIncludingText: z.string(),
-  }),
-  /** The amendment amended by the amendment. */
-  amendedAmendment: z
-    .strictObject({
-      /** The congress during which an amendment was submitted or offered. (e.g. 117) */
-      congress: z.number(),
-      /** The assigned amendment number. */
-      number: z.string(),
-      /** The amendment's description.
-       *  Only House amendments will have this element populated
-       */
-      description: z.string().optional(),
-      /** The amendment's purpose.
-       * House amendments and proposed Senate amendments may have this element populated.
-       */
-      purpose: z.string().optional(),
-      /** The type of amendment.
-       *  Possible values are "HAMDT", "SAMDT", and "SUAMDT". Note that the "SUAMDT" type value is only available for the 97th and 98th Congresses.
-       */
-      type: amendmentTypeEnum,
-      /** A referrer URL to the amendment item in the API. */
+    notes: z.string().optional(),
+    /** The date the amendment was submitted or offered. (e.g. 2021-08-01T04:00:00Z) */
+    submittedDate: z.iso.datetime().optional(),
+    /** **Not documented** */
+    textVersions: z.strictObject({
       url: z.url(),
-    })
-    .optional(),
-  /** Amendments to the amendment. */
-  amendmentsToAmendment: z
-    .strictObject({
-      /** The number of amendments to the amendment. */
       count: z.number(),
-      /** A referrer URL to the amendment to amendments level of the amendment API. */
-      url: z.url(),
-    })
-    .optional(),
-  /** The treaty amended by the amendment */
-  amendedTreaty: z
-    .strictObject({
-      /** The congress during which a treaty was submitted. (e.g. 116) */
+      formats: z
+        .array(
+          z.strictObject({
+            type: z.string(),
+            url: z.url(),
+          }),
+        )
+        .optional(),
+    }),
+    /** The bill amended by the amendment */
+    amendedBill: z.strictObject({
+      /** The congress during which the bill or resolution was introduced or submitted. e.g. 117) */
       congress: z.number(),
-      /** The assigned treaty number. (e.g. 1) */
-      treatyNumber: z.number(),
-      /** A referrer URL to the treaty item in the API. Documentation for the treaty endpoint is available here. */
+      /** The assigned bill or resolution number. */
+      number: z.string(),
+      /** The chamber of origin where a bill or resolution was introduced or submitted.
+       * Possible values are "House" and "Senate".
+       */
+      originChamber: z.enum(Chamber),
+      /** The code for the chamber of origin where the bill or resolution was introduced or submitted.
+       * Possible values are "H" and "S".
+       */
+      originChamberCode: z.enum(ChamberCode),
+      /** The display title for the bill or resolution on Congress.gov. */
+      title: z.string(),
+      /** The type of bill or resolution.
+       *  Possible values are "HR", "S", "HJRES", "SJRES", "HCONRES", "SCONRES", "HRES", and "SRES".
+       */
+      type: z.enum(BillType),
+      /** A referrer URL to the bill or resolution item in the API */
       url: z.url(),
-    })
-    .optional(),
-}).omit({ url: true });
+      /** **Not Documented** */
+      updateDateIncludingText: z.string(),
+    }),
+    /** The amendment amended by the amendment. */
+    amendedAmendment: z
+      .strictObject({
+        /** The congress during which an amendment was submitted or offered. (e.g. 117) */
+        congress: z.number(),
+        /** The assigned amendment number. */
+        number: z.string(),
+        /** The amendment's description.
+         *  Only House amendments will have this element populated
+         */
+        description: z.string().optional(),
+        /** The amendment's purpose.
+         * House amendments and proposed Senate amendments may have this element populated.
+         */
+        purpose: z.string().optional(),
+        /** The type of amendment.
+         *  Possible values are "HAMDT", "SAMDT", and "SUAMDT". Note that the "SUAMDT" type value is only available for the 97th and 98th Congresses.
+         */
+        type: amendmentTypeEnum,
+        /** A referrer URL to the amendment item in the API. */
+        url: z.url(),
+      })
+      .optional(),
+    /** Amendments to the amendment. */
+    amendmentsToAmendment: z
+      .strictObject({
+        /** The number of amendments to the amendment. */
+        count: z.number(),
+        /** A referrer URL to the amendment to amendments level of the amendment API. */
+        url: z.url(),
+      })
+      .optional(),
+    /** The treaty amended by the amendment */
+    amendedTreaty: z
+      .strictObject({
+        /** The congress during which a treaty was submitted. (e.g. 116) */
+        congress: z.number(),
+        /** The assigned treaty number. (e.g. 1) */
+        treatyNumber: z.number(),
+        /** A referrer URL to the treaty item in the API. Documentation for the treaty endpoint is available here. */
+        url: z.url(),
+      })
+      .optional(),
+  })
+  .omit({ url: true });
 
 /**
-* Zod schema for validating entities returned from the `/amendment/{congress}/{amendmentType}/{amendmentNumber}` detail endpoint.
-* @ignore
-*/
+ * Zod schema for validating entities returned from the `/amendment/{congress}/{amendmentType}/{amendmentNumber}` detail endpoint.
+ * @ignore
+ */
 export const AmendmentSchema = z.discriminatedUnion('type', [
   z.object({
     ...AmendmentDetailBaseSchema.shape,
     description: z.string(),
     type: amendmentTypeEnum.extract([AmendmentType.HAMDT]),
   }),
-  z
-    .strictObject({
-      ...AmendmentDetailBaseSchema.shape,
-      type: amendmentTypeEnum.extract([AmendmentType.SAMDT]),
-      cosponsors: z
-        .strictObject({
-          count: z.number(),
-          countIncludingWithdrawnCosponsors: z.number(),
-          url: z.string(),
-        })
-        .optional(),
-    }),
-  z
-    .strictObject({
-      ...AmendmentDetailBaseSchema.shape,
-      type: amendmentTypeEnum.extract([AmendmentType.SUAMDT]),
-      cosponsors: z
-        .strictObject({
-          /** The current number of cosponsors of the amendment, not including any withdrawn cosponsors. */
-          count: z.number(),
-          /** The total number of cosponsors of the amendment, including any withdrawn cosponsors. */
-          countIncludingWithdrawnCosponsors: z.number(),
-          /** A referrer URL to the cosponsors level of the amendment item in the API. (e.g. https://api.congress.gov/v3/amendment/117/samdt/3892/cosponsors) */
-          url: z.url(),
-        })
-        .optional(),
-    }),
+  z.strictObject({
+    ...AmendmentDetailBaseSchema.shape,
+    type: amendmentTypeEnum.extract([AmendmentType.SAMDT]),
+    cosponsors: z
+      .strictObject({
+        count: z.number(),
+        countIncludingWithdrawnCosponsors: z.number(),
+        url: z.string(),
+      })
+      .optional(),
+  }),
+  z.strictObject({
+    ...AmendmentDetailBaseSchema.shape,
+    type: amendmentTypeEnum.extract([AmendmentType.SUAMDT]),
+    cosponsors: z
+      .strictObject({
+        /** The current number of cosponsors of the amendment, not including any withdrawn cosponsors. */
+        count: z.number(),
+        /** The total number of cosponsors of the amendment, including any withdrawn cosponsors. */
+        countIncludingWithdrawnCosponsors: z.number(),
+        /** A referrer URL to the cosponsors level of the amendment item in the API. (e.g. https://api.congress.gov/v3/amendment/117/samdt/3892/cosponsors) */
+        url: z.url(),
+      })
+      .optional(),
+  }),
 ]);
- 
+
 /**
-* Zod schema for validating entities returned from the `/amendment/{congress}/{amendmentType}/{amendmentNumber}/actions` endpoint.
-* @ignore
-*/
+ * Zod schema for validating entities returned from the `/amendment/{congress}/{amendmentType}/{amendmentNumber}/actions` endpoint.
+ * @ignore
+ */
 export const AmendmentActionSchema = z.strictObject({
   /** The date of the action taken on an amendment. (e.g. 2021-08-08) */
   actionDate: z.iso.date(),
@@ -385,9 +383,9 @@ export const AmendmentActionSchema = z.strictObject({
 });
 
 /**
-* Zod schema for validating entities returned from the `/amendment/{congress}/{amendmentType}/{amendmentNumber}/cosponsors` endpoint.
-* @ignore
-*/
+ * Zod schema for validating entities returned from the `/amendment/{congress}/{amendmentType}/{amendmentNumber}/cosponsors` endpoint.
+ * @ignore
+ */
 export const AmendmentCosponsorSchema = z.strictObject({
   /** The unique identifier for the amendment cosponsor, as assigned in the [Biographical Directory of the United States Congress, 1774-Present](https://bioguide.congress.gov/).
    * View a [field values list of Bioguide identifiers](https://www.congress.gov/help/field-values/member-bioguide-ids) for current and former members in Congress.gov.
@@ -421,9 +419,9 @@ export const AmendmentCosponsorSchema = z.strictObject({
 });
 
 /**
-* Zod schema for validating entities returned from the `/amendment/{congress}/{amendmentType}/{amendmentNumber}/amendments` endpoint.
-* @ignore
-*/
+ * Zod schema for validating entities returned from the `/amendment/{congress}/{amendmentType}/{amendmentNumber}/amendments` endpoint.
+ * @ignore
+ */
 export const AmendmentToAmendmentSchema = z.strictObject({
   /** The congress during which an amendment was submitted or offered. */
   congress: z.number(),

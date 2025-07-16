@@ -67,7 +67,6 @@ describe('AmendmentClient', () => {
   describe('getAmendment', () => {
     it('should return detailed amendment information', async () => {
       const { amendment } = await client.getAmendment(117, AmendmentType.SAMDT, '1');
-      console.log(amendment);
       expect(AmendmentSchema.parse(amendment));
     });
   });
