@@ -4,15 +4,15 @@ import {
   BillAmendmentSchema,
   BillCosponsorSchema,
   BillCommitteeSchema,
-  ListBillSchema,
+  BillSummarySchema,
   BillSchema,
   RelatedBillSchema,
   BillSubjectSchema,
-  BillSummarySchema,
+  BillSummaryVersionSchema,
   BillTextSchema,
   BillTitleSchema,
   LawSchema,
-  LawListSchema,
+  LawSummarySchema,
 } from '../schemas/bill';
 import { BillType, LawType } from '../schemas/constants';
 
@@ -33,12 +33,17 @@ describe('BillClient Tests', () => {
       expect(bills.length).toBeLessThanOrEqual(5);
 
       bills.forEach((bill) => {
-        expect(ListBillSchema.parse(bill));
+        expect(BillSummarySchema.parse(bill));
       });
     });
 
     it('should query by date range', async () => {
-      const { bills } = await client.getBills({ limit: 5, sort: 'updateDate+desc', fromDateTime: new Date('2024-01-01'), toDateTime: new Date('2024-12-31') });
+      const { bills } = await client.getBills({
+        limit: 5,
+        sort: 'updateDate+desc',
+        fromDateTime: new Date('2024-01-01'),
+        toDateTime: new Date('2024-12-31'),
+      });
 
       expect(Array.isArray(bills)).toBe(true);
       expect(bills.length).toBeLessThanOrEqual(5);
@@ -53,7 +58,7 @@ describe('BillClient Tests', () => {
       expect(bills.length).toBeLessThanOrEqual(5);
 
       bills.forEach((bill) => {
-        expect(ListBillSchema.parse(bill));
+        expect(BillSummarySchema.parse(bill));
       });
     });
   });
@@ -68,7 +73,7 @@ describe('BillClient Tests', () => {
       expect(bills.length).toBeLessThanOrEqual(5);
 
       bills.forEach((bill) => {
-        expect(ListBillSchema.parse(bill));
+        expect(BillSummarySchema.parse(bill));
       });
     });
   });
@@ -150,7 +155,7 @@ describe('BillClient Tests', () => {
 
       expect(Array.isArray(summaries)).toBe(true);
       summaries.forEach((summary) => {
-        expect(BillSummarySchema.parse(summary));
+        expect(BillSummaryVersionSchema.parse(summary));
       });
     });
   });
@@ -183,7 +188,7 @@ describe('BillClient Tests', () => {
 
       expect(Array.isArray(bills)).toBe(true);
       bills.forEach((law) => {
-        expect(LawListSchema.parse(law));
+        expect(LawSummarySchema.parse(law));
       });
     });
   });
@@ -194,7 +199,7 @@ describe('BillClient Tests', () => {
 
       expect(Array.isArray(bills)).toBe(true);
       bills.forEach((law) => {
-        expect(LawListSchema.parse(law));
+        expect(LawSummarySchema.parse(law));
       });
     });
   });

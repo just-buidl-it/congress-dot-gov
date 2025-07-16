@@ -5,7 +5,11 @@ import type {
   DateFilterParams,
   SortParams,
 } from '../types';
-import { RateLimitExceededError, CongressGovApiError, CongressGovSdkError } from '../utils/errors';
+import {
+  RateLimitExceededError,
+  CongressGovApiError,
+  CongressGovSdkError,
+} from '../utils/errors';
 
 export interface CongressGovConfig {
   apiKey: string;
@@ -17,7 +21,7 @@ export interface RateLimitInfo {
   remaining: number;
 }
 
-type Params = Partial<PaginationParams & BaseParams & DateFilterParams & SortParams>
+type Params = Partial<PaginationParams & BaseParams & DateFilterParams & SortParams>;
 
 export class CongressGovURLSearchParams {
   private _params: Params;
@@ -27,16 +31,21 @@ export class CongressGovURLSearchParams {
   }
 
   get params(): Record<string, string> {
-    return Object.fromEntries(Object.entries(this._params).reduce((acc, [key, value]) => {
-      if (value !== undefined) {
-        if (key === 'fromDateTime' || key === 'toDateTime') {
-         acc.push([key, this.formatDateTime(value as Date | string)]);
-        } else {
-          acc.push([key, value.toString()]);
-        }
-      }
-      return acc;
-    }, [] as [string, string][]));
+    return Object.fromEntries(
+      Object.entries(this._params).reduce(
+        (acc, [key, value]) => {
+          if (value !== undefined) {
+            if (key === 'fromDateTime' || key === 'toDateTime') {
+              acc.push([key, this.formatDateTime(value as Date | string)]);
+            } else {
+              acc.push([key, value.toString()]);
+            }
+          }
+          return acc;
+        },
+        [] as [string, string][],
+      ),
+    );
   }
 
   formatDateTime(date: Date | string): string {
@@ -66,7 +75,10 @@ export class BaseClient {
     this.endpoint = endpoint;
   }
 
-  protected async get<T>(endpoint: string, params: Params): Promise<T & { rateLimit: RateLimitInfo }> {
+  protected async get<T>(
+    endpoint: string,
+    params: Params,
+  ): Promise<T & { rateLimit: RateLimitInfo }> {
     const searchParams = new CongressGovURLSearchParams(params);
     const url = new URL(`/v3${this.endpoint}${endpoint}`, this.baseUrl);
     url.search = searchParams.toUrlSearchParams();
@@ -79,7 +91,7 @@ export class BaseClient {
 
     const rateLimit: RateLimitInfo = {
       limit: parseInt(response.headers.get('x-ratelimit-limit') || '0'),
-      remaining: parseInt(response.headers.get('x-ratelimit-remaining') || '0')
+      remaining: parseInt(response.headers.get('x-ratelimit-remaining') || '0'),
     };
     const data = await response.json();
 
@@ -89,21 +101,17 @@ export class BaseClient {
         throw new RateLimitExceededError(
           'Rate limit exceeded. Please try again later.',
           response.status,
-          rateLimit
+          rateLimit,
         );
       }
 
       // Otherwise throw our generic error
-      throw new CongressGovApiError(
-        data,
-        response.status,
-        endpoint
-      );
+      throw new CongressGovApiError(data, response.status, endpoint);
     }
 
     return {
       ...data,
-      rateLimit
+      rateLimit,
     };
   }
 }

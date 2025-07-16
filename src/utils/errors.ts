@@ -5,7 +5,11 @@ export class RateLimitExceededError extends Error {
     remaining: number;
   };
 
-  constructor(message: string, statusCode: number = 429, rateLimit?: { limit: number, remaining: number }) {
+  constructor(
+    message: string,
+    statusCode: number = 429,
+    rateLimit?: { limit: number; remaining: number },
+  ) {
     super(message);
     this.name = 'RateLimitExceededError';
     this.statusCode = statusCode;
@@ -29,7 +33,6 @@ export class CongressGovApiError extends Error {
 }
 
 export class CongressGovSdkError extends Error {
-
   constructor(message: string) {
     super(message);
     this.name = 'CongressGovSdkError';
