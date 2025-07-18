@@ -1,6 +1,30 @@
 /**
  * @packageDocumentation
  * Client for the `congress` endpoints.
+ * @example - Get and validate a list of congresses
+ * import { CongressClient } from 'congress-dot-gov';
+ * const { congresses } = await client.getCongresses();
+ * try {
+ *   const validCongresses = congresses.filter(congress => {
+ *     try {
+ *       CongressSummarySchema.parse(congress);
+ *       return true;
+ *     } catch (error) {
+ *       return false;
+ *     }
+ *   });
+ * } catch (error) {
+ *   console.error(error);
+ * }
+ *
+ * @example - Get and validate a single congress
+ * import { CongressClient } from 'congress-dot-gov';
+ * const { congress} = await client.getCongress(117);
+ * try {
+ *   CongressSchema.parse(congress);
+ * } catch (error) {
+ *   console.error(error);
+ * }
  */
 import { BaseClient } from './base';
 import type { PaginationParams, PaginatedResponse, BaseParams } from '../types';

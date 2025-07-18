@@ -221,28 +221,30 @@ Possible values are "Representative", "Resident Commissioner", "Delegate", or "S
     }),
   ),
   /** The previous names of the member. */
-  previousNames: z.array(
-    z.strictObject({
-      /** The honorific title of the member. (e.g., Mr.) */
-      honorificName: z.string().optional(),
-      /** The member’s first name. (e.g., Patrick) */
-      firstName: z.string().optional(),
-      /** The member’s middle name. (e.g., Joseph) */
-      middleName: z.string().optional(),
-      /** The member’s last name. (e.g., Leahy) */
-      lastName: z.string().optional(),
-      /** The member’s suffix. */
-      suffixName: z.string().optional(),
-      /**  The member’s name in first - name - first order. (e.g., Patrick J.Leahy) */
-      directOrderName: z.string().optional(),
-      /**  The member’s name in last - name - first order. (e.g., Leahy, Patrick J.) */
-      invertedOrderName: z.string().optional(),
-      /** The date that the member's use of the name started. (e.g., 2025-01 - 17T05:00:00Z) */
-      startDate: z.iso.datetime().optional(),
-      /** The date that the member's use of the name ended. (e.g., 2025-04 - 28T13:04: 16Z) */
-      endDate: z.iso.datetime().optional(),
-    }),
-  ).optional(),
+  previousNames: z
+    .array(
+      z.strictObject({
+        /** The honorific title of the member. (e.g., Mr.) */
+        honorificName: z.string().optional(),
+        /** The member’s first name. (e.g., Patrick) */
+        firstName: z.string().optional(),
+        /** The member’s middle name. (e.g., Joseph) */
+        middleName: z.string().optional(),
+        /** The member’s last name. (e.g., Leahy) */
+        lastName: z.string().optional(),
+        /** The member’s suffix. */
+        suffixName: z.string().optional(),
+        /**  The member’s name in first - name - first order. (e.g., Patrick J.Leahy) */
+        directOrderName: z.string().optional(),
+        /**  The member’s name in last - name - first order. (e.g., Leahy, Patrick J.) */
+        invertedOrderName: z.string().optional(),
+        /** The date that the member's use of the name started. (e.g., 2025-01 - 17T05:00:00Z) */
+        startDate: z.iso.datetime().optional(),
+        /** The date that the member's use of the name ended. (e.g., 2025-04 - 28T13:04: 16Z) */
+        endDate: z.iso.datetime().optional(),
+      }),
+    )
+    .optional(),
   /** The date of update in Congress.gov. (e.g., 2022-05 - 17T18: 44:02Z) */
   updateDate: z.iso.datetime(),
 });

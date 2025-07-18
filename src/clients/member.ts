@@ -71,7 +71,10 @@ export class MemberClient extends BaseClient {
    * @param params {PaginationParams & MemberParams} - Pagination and format parameters
    * @returns A list of members for the specified congress
    */
-  async getMembersByPriorCongress(congress: number, params: PaginationParams & MemberParams = {}) {
+  async getMembersByPriorCongress(
+    congress: number,
+    params: PaginationParams & MemberParams = {},
+  ) {
     params.currentMember = false;
     return this.get<PaginatedResponse<{ members: MemberSummary[] }>>(
       `/congress/${congress}`,
@@ -85,7 +88,10 @@ export class MemberClient extends BaseClient {
    * @param params {PaginationParams & MemberParams} - Pagination and format parameters
    * @returns A list of members for the specified congress
    */
-  async getMembersByCurrentCongress(congress: number, params: PaginationParams & MemberParams = {}) {
+  async getMembersByCurrentCongress(
+    congress: number,
+    params: PaginationParams & MemberParams = {},
+  ) {
     params.currentMember = true;
     return this.get<PaginatedResponse<{ members: MemberSummary[] }>>(
       `/congress/${congress}`,
@@ -99,7 +105,10 @@ export class MemberClient extends BaseClient {
    * @param params {PaginationParams & MemberParams} - Pagination and format parameters
    * @returns A list of members for the specified state
    */
-  async getMembersByState(stateCode: string, params: PaginationParams & MemberParams = {}) {
+  async getMembersByState(
+    stateCode: string,
+    params: PaginationParams & MemberParams = {},
+  ) {
     return this.get<PaginatedResponse<{ members: MemberSummary[] }>>(
       `/${stateCode}`,
       params,
@@ -126,8 +135,8 @@ export class MemberClient extends BaseClient {
 
   /**
    * Returns a list of members filtered by congress, state and district.
-   * There are instances where a member has been redistricted but previously represented the district you are generating an API request for and, thus, appears in the returned data. 
-   * If you are looking for ONLY the current member of a particular district, please use the currentMember=True filter to get the most accurate results 
+   * There are instances where a member has been redistricted but previously represented the district you are generating an API request for and, thus, appears in the returned data.
+   * If you are looking for ONLY the current member of a particular district, please use the currentMember=True filter to get the most accurate results
    * @param congress - The congress to filter by
    * @param stateCode - The state code to filter by
    * @param district - The district to filter by
