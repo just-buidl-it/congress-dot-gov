@@ -195,7 +195,7 @@ describe('BillClient Tests', () => {
 
   describe('getLawsByType', () => {
     it('should return laws by type', async () => {
-      const { bills } = await client.getLawsByType(117, LawType.PUBLIC);
+      const { bills } = await client.getLawsByType(117, LawType.PUBLIC_LAW);
 
       expect(Array.isArray(bills)).toBe(true);
       bills.forEach((law) => {
@@ -206,7 +206,7 @@ describe('BillClient Tests', () => {
 
   describe('getLaw', () => {
     it('should return specific law', async () => {
-      const { bill } = await client.getLaw(117, LawType.PUBLIC, '1');
+      const { bill } = await client.getLaw(117, LawType.PUBLIC_LAW, '1');
       expect(LawSchema.parse(bill));
     });
   });

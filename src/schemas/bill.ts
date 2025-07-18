@@ -126,8 +126,8 @@ const BaseBillSchema = z.strictObject({
         /** The law number, as assigned by the National Archives and Records Administration (NARA). */
         number: z.string(),
         /** The type of law.
-        * Possible values are "Public Law" or "Private Law". 
-        * */
+         * Possible values are "Public Law" or "Private Law".
+         * */
         type: z.enum(LawType),
       }),
     )
@@ -290,9 +290,9 @@ As new codes and systems were developed, there was no coordinated effort to retr
       }),
     )
     .optional(),
-  /**  recorded (roll call) votes associated with the action. Read more about [roll call votes](https://www.congress.gov/help/legislative-glossary#glossary_rollcallvote) on Congress.gov. 
+  /**  recorded (roll call) votes associated with the action. Read more about [roll call votes](https://www.congress.gov/help/legislative-glossary#glossary_rollcallvote) on Congress.gov.
    * More information can also be found at the [Roll Call Votes by the U.S. Congress](https://www.congress.gov/roll-call-votes) and [Votes in the House and Senate](https://www.congress.gov/help/votes-in-the-house-and-senate) pages on Congress.gov.
-  */
+   */
   recordedVotes: z
     .array(
       z.strictObject({
@@ -356,7 +356,7 @@ export const BillAmendmentSchema = z.strictObject({
   number: z.string(),
   /** The type of amendment. (e.g. HAMDT)
    * Possible values are "HAMDT", "SAMDT", and "SUAMDT". Note that the "SUAMDT" type value is only available for the 97th and 98th Congresses.
-  */
+   */
   type: z.enum(AmendmentType),
   /** The date of update on Congress.gov.  */
   updateDate: z.string(),
@@ -375,27 +375,27 @@ export const BillCommitteeSchema = z.strictObject({
       date: z.string(),
       /** The name of the committee or subcommittee activity.
        * Possible values are "Referred to", "Re-Referred to", "Hearings by", "Markup by", "Reported by", "Reported original measure", "Committed to", "Re-Committed to", and "Legislative Interest". (e.g. Referred to)
-      */
+       */
       name: z.enum(ActivityName),
     }),
   ),
   /** The chamber where the committee or subcommittee operates.
    * Possible values are "House", "Senate", or "Joint". (e.g. House)
-  */
+   */
   chamber: z.enum(Chamber),
   /** The name of the committee associated with the bill or resolution. (e.g. Energy and Commerce Committee) */
   name: z.string(),
   /** Unique ID value for the committee (e.g. hsif00) */
   systemCode: z.string(),
   /** The type or status of the committee or subcommittee.
-   * Possible values are "Standing", "Select", "Special", "Joint", "Task Force", "Other", "Subcommittee", or "Commission or Caucus". 
+   * Possible values are "Standing", "Select", "Special", "Joint", "Task Force", "Other", "Subcommittee", or "Commission or Caucus".
    * (e.g. Standing)
-  */
+   */
   type: z.enum(CommitteeType),
   /** A referrer URL to the committee or subcommittee item in the committee API.
-   *  Documentation for the committee endpoint is available [here](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/CommitteeEndpoint.md). 
+   *  Documentation for the committee endpoint is available [here](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/CommitteeEndpoint.md).
    * (e.g. https://api.congress.gov/v3/committee/house/hsif00)
-  */
+   */
   url: z.url(),
   /** Subcommittees associated with the bill or resolution. */
   subcommittees: z
@@ -406,9 +406,9 @@ export const BillCommitteeSchema = z.strictObject({
         /** Unique ID value for the committee. (e.g. hsif00) */
         systemCode: z.string(),
         /** A referrer URL to the committee or subcommittee item in the committee API.
-         *  Documentation for the committee endpoint is available [here](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/CommitteeEndpoint.md). 
+         *  Documentation for the committee endpoint is available [here](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/CommitteeEndpoint.md).
          * (e.g. https://api.congress.gov/v3/committee/house/hsif00)
-        */
+         */
         url: z.url(),
         /** Committee or subcommittee activities on a bill or resolution. Read more [about committee-related activity](https://www.congress.gov/help/legislative-glossary#glossary_committeerelatedactivity) on Congress.gov. */
         activities: z.array(
@@ -417,7 +417,7 @@ export const BillCommitteeSchema = z.strictObject({
             date: z.string(),
             /** The name of the committee or subcommittee activity.
              * Possible values are "Referred to", "Re-Referred to", "Hearings by", "Markup by", "Reported by", "Reported original measure", "Committed to", "Re-Committed to", and "Legislative Interest". (e.g. Referred to)
-            */
+             */
             name: z.string(),
           }),
         ),
@@ -432,7 +432,7 @@ export const BillCommitteeSchema = z.strictObject({
 export const BillCosponsorSchema = z.strictObject({
   /** The unique identifier for the bill or resolution cosponsor, as assigned in the [Biographical Directory of the United States Congress, 1774-Present](http://bioguide.congress.gov/).
    * View a [field values list of Bioguide identifiers](https://www.congress.gov/help/field-values/member-bioguide-ids) for current and former members in Congress.gov. (e.g. C001078)
-  */
+   */
   bioguideId: z.string(),
   /** The congressional district that the bill or resolution cosponsor represents.
 Note that this element will be "0" for states, territories, or districts where there is only one congressional district. */
@@ -441,10 +441,10 @@ Note that this element will be "0" for states, territories, or districts where t
   firstName: z.string(),
   /** The display name for the bill or resolution cosponsor. (e.g. Rep. Connolly, Gerald E. [D-VA-11]) */
   fullName: z.string(),
-  /** A designation that the member is an original or additional cosponsor of the bill or resolution. 
+  /** A designation that the member is an original or additional cosponsor of the bill or resolution.
    * If the member cosponsored the bill or resolution on the date of its introduction or submission, then this value will be "True". If the member cosponsored the bill or resolution after its date of introduction or submission, then this value will be "False".
    * Possible values are "True" or "False" (e.g. True)
-  */
+   */
   isOriginalCosponsor: z.boolean(),
   /** The last name of the bill or resolution cosponsor. (e.g. Connolly) */
   lastName: z.string(),
@@ -452,7 +452,7 @@ Note that this element will be "0" for states, territories, or districts where t
   middleName: z.string().optional(),
   /** The party code of the bill or resolution cosponsor.
    * Possible values are "D", "R", "I", "ID", and "L". (e.g. D)
-  */
+   */
   party: z.enum(PartyCode),
   /** The date the cosponsor withdrew their cosponsorship of the bill or resolution. */
   sponsorshipDate: z.string(),
@@ -487,8 +487,8 @@ export const RelatedBillSchema = z.strictObject({
   relationshipDetails: z.array(
     z.strictObject({
       /** The entity responsible for identifying the relationship.
-      * Possible values are "House", "Senate", and "CRS". 
-      */
+       * Possible values are "House", "Senate", and "CRS".
+       */
       identifiedBy: z.enum(IdentifiedBy),
       /** The type of relationship, as designated by the House, Senate, or CRS. (e.g. Related bill) */
       type: z.string(),
@@ -497,8 +497,8 @@ export const RelatedBillSchema = z.strictObject({
   /** The display title for the related bill or resolution on Congress.gov. (e.g. Postal Service Reform Act of 2021) */
   title: z.string(),
   /** The type of related bill or resolution.
-   * Possible values are "HR", "S", "HJRES", "SJRES", "HCONRES", "SCONRES", "HRES", and "SRES". 
-  */
+   * Possible values are "HR", "S", "HJRES", "SJRES", "HCONRES", "SCONRES", "HRES", and "SRES".
+   */
   type: z.enum(BillType),
   /** A referrer URL to the bill item in the API. (e.g. https://api.congress.gov/v3/bill/117/s/1720) */
   url: z.url(),
@@ -506,8 +506,8 @@ export const RelatedBillSchema = z.strictObject({
 
 /**
  * Zod schema for validating entities returned from the `/bill/{congress}/{billType}/{billNumber}/subjects` endpoint.
- * [Legislative subject terms](https://www.congress.gov/help/legislative-glossary#glossary_legislativesubjectterm) and [policy area terms](https://www.congress.gov/help/legislative-glossary#glossary_policyareaterm) attached to a bill or resolution, as assigned by CRS. 
- * Note that subject terms from the [Legislative Indexing Vocabulary](https://www.congress.gov/help/legislative-glossary#glossary_legislativeindexingvocabulary) were applied to bills and resolutions from the 93rd to the 110th Congresses (1973-2008). 
+ * [Legislative subject terms](https://www.congress.gov/help/legislative-glossary#glossary_legislativesubjectterm) and [policy area terms](https://www.congress.gov/help/legislative-glossary#glossary_policyareaterm) attached to a bill or resolution, as assigned by CRS.
+ * Note that subject terms from the [Legislative Indexing Vocabulary](https://www.congress.gov/help/legislative-glossary#glossary_legislativeindexingvocabulary) were applied to bills and resolutions from the 93rd to the 110th Congresses (1973-2008).
  * Read more [about subject and policy area terms](https://www.congress.gov/help/find-bills-by-subject) on Congress.gov.
  */
 export const BillSubjectSchema = z.strictObject({
@@ -521,8 +521,8 @@ export const BillSubjectSchema = z.strictObject({
     }),
   ),
   /** Policy area term attached to a bill or resolution. Each bill or resolution will have only one policy area term taken from [this list of terms](https://www.congress.gov/help/field-values/policy-area) on Congress.gov.
-   * Note that prior to the 101st Congress (1989), terms outside of the controlled list may be used as a policy area term for a bill or resolution. 
-   * Projects are underway to standardize the terms used during those congresses. 
+   * Note that prior to the 101st Congress (1989), terms outside of the controlled list may be used as a policy area term for a bill or resolution.
+   * Projects are underway to standardize the terms used during those congresses.
    * */
   policyArea: z.strictObject({
     /** The name of the policy area term attached to a bill or resolution. */
@@ -582,41 +582,45 @@ export const BillTitleSchema = z.strictObject({
   /** The name of the bill text version associated with the title. This element is not populated for all titles (e.g. a display title will never have an associated bill text version). (e.g. Engrossed in House) */
   billTextVersionName: z.string().optional(),
   /** The chamber code associated with the title. This element is not populated for all titles (e.g. a display title will never have an associated chamber).
-  * Possible values are "H" and "S". (e.g. H) 
-  * */
+   * Possible values are "H" and "S". (e.g. H)
+   * */
   chamberCode: z.enum(ChamberCode).optional(),
   /** The name of the chamber associated with the title. This element is not populated for all titles (e.g. a display title will never have an associated chamber).
    * Possible values are "House" and "Senate". (e.g. House)
-  */
+   */
   chamberName: z.enum(Chamber).optional(),
 });
 
-
 export const LawSummarySchema = BillSummarySchema.extend({
-  laws: z.array(
-    z.strictObject({
-      /** The law number assigned by NARA Law numbers can be found for [Public Laws](https://www.congress.gov/public-laws/118th-congress) and for [Private Laws](https://www.congress.gov/private-laws/118th-congress) on Congress.gov. */
-      number: z.string(),
-      /** The type of law.
-      * Possible values are "Public Law" or "Private Law". 
-      * */
-      type: z.enum(LawType),
-    }),
-  ),
+  /** Public or private law data for the bill or joint resolution */
+  laws: z
+    .array(
+      z.strictObject({
+        /** The law number, as assigned by the National Archives and Records Administration (NARA). */
+        number: z.string(),
+        /** The type of law.
+         * Possible values are "Public Law" or "Private Law".
+         * */
+        type: z.enum(LawType),
+      }),
+    )
+    .optional(),
 });
 
 export const LawSchema = BaseBillSchema.extend({
-  /** */
-  laws: z.array(
-    z.strictObject({
-      /** The law number assigned by NARA Law numbers can be found for [Public Laws](https://www.congress.gov/public-laws/118th-congress) and for [Private Laws](https://www.congress.gov/private-laws/118th-congress) on Congress.gov. */
-      number: z.string(),
-      /** The type of law.
-      * Possible values are "Public Law" or "Private Law". 
-      * */
-      type: z.enum(LawType),
-    }),
-  ),
+  /** Public or private law data for the bill or joint resolution */
+  laws: z
+    .array(
+      z.strictObject({
+        /** The law number, as assigned by the National Archives and Records Administration (NARA). */
+        number: z.string(),
+        /** The type of law.
+         * Possible values are "Public Law" or "Private Law".
+         * */
+        type: z.enum(LawType),
+      }),
+    )
+    .optional(),
 });
 
 export type BillSummary = z.infer<typeof BillSummarySchema>;
