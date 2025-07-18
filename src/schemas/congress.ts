@@ -6,30 +6,6 @@
  * - /congress/current returns Congress
  * [Library of Congress XML Documentation](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/CongressEndpoint.md)
  *
- * @example - Get and validate a list of congresses
- * import { CongressClient } from 'congress-dot-gov';
- * const { congresses } = await client.getCongresses();
- * try {
- *   const validCongresses = congresses.filter(congress => {
- *     try {
- *       CongressSummarySchema.parse(congress);
- *       return true;
- *     } catch (error) {
- *       return false;
- *     }
- *   });
- * } catch (error) {
- *   console.error(error);
- * }
- *
- * @example - Get and validate a single congress
- * import { CongressClient } from 'congress-dot-gov';
- * const { congress} = await client.getCongress(117);
- * try {
- *   CongressSchema.parse(congress);
- * } catch (error) {
- *   console.error(error);
- * }
  */
 import { z } from 'zod/v4';
 import { CongressChamber, Session } from './constants';
