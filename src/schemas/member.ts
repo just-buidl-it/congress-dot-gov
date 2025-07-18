@@ -20,6 +20,7 @@ import {
   StateCode,
   StateName,
   BillType,
+  CongressChamber,
 } from './constants';
 
 /**
@@ -85,10 +86,10 @@ export const MemberDetailSchema = z.strictObject({
     .strictObject({
       /** The member’s mailing and physical office address in Washington, D.C.The < officeAddress > element provides the full address for Senate members and only the House office building information for House members. (e.g, 437 Russell Senate Office Building Washington, DC 20510) */
       officeAddress: z.string().optional(),
-      /** The city of Washington. (e.g., Washington) */
-      city: z.string().optional(),
-      /** The two letter postal abbreviation for the District of Columbia. (e.g., DC) */
-      district: z.enum(StateName).optional(),
+      /** The city of Washington. (Washington) */
+      city: z.literal('Washington'),
+      /** The two letter postal abbreviation for the District of Columbia. (DC) */
+      district: z.literal('DC'),
       /** The postal zip code for the member’s office in Washington, D.C. (e.g., 20510) */
       zipCode: z.string().optional(),
       /**  The telephone number for the member’s office in Washington, D.C. (e.g., (202) 224 - 4242) */
@@ -109,7 +110,7 @@ export const MemberDetailSchema = z.strictObject({
     .strictObject({
       /** The total number of bills and resolutions cosponsored by the member. (e.g., 7470) */
       count: z.number(),
-      /** A referrer URL to the cosponsored - legislation level of the API.Click here for more information about the cosponsored - legislation level. (e.g., https://api.congress.gov/v3/member/L000174/cosponsored-legislation) */
+      /** A referrer URL to the cosponsored - legislation level of the API. [More information](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/MemberEndpoint.md#cosponsored-legislation-level). (e.g., https://api.congress.gov/v3/member/L000174/cosponsored-legislation) */
       url: z.string(),
     })
     .optional(),
@@ -169,7 +170,7 @@ Possible values are "Democratic", "Independent", "Independent Democrat", "Libert
       z.strictObject({
         /** The single letter abbreviation for the political party of the member.
    Possible values are "D", "I", "ID", "L", and "R".  */
-        partyAbbreviation: z.string(),
+        partyAbbreviation: z.enum(PartyCode),
         /** The political party of the member.
    Possible values are "Democratic", "Independent", "Independent Democrat", "Libertarian", and "Republication".  */
         partyName: z.enum(PartyName),
@@ -194,7 +195,7 @@ Possible values are "Democratic", "Independent", "Independent Democrat", "Libert
     z.strictObject({
       /** The chamber in which the member served during that Congress.
 Possible values are "House of Representatives" and "Senate". (e.g., Senate) */
-      chamber: z.string(),
+      chamber: z.enum(CongressChamber),
       /** The Congress during which the member served.
 View the [field values list of Congresses](https://www.congress.gov/help/field-values/congresses) on Congress.gov. Read more [about Congresses](https://www.congress.gov/help/legislative-glossary#glossary_congress) on Congress.gov. (e.g., 94) */
       congress: z.number(),

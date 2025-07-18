@@ -1,3 +1,21 @@
+export enum ActivityName {
+  REFERRED_TO = 'Referred to',
+  RE_REFERRED_TO = 'Re-Referred to',
+  HEARINGS_BY = 'Hearings by',
+  MARKUP_BY = 'Markup by',
+  REPORTED_BY = 'Reported by',
+  REPORTED_ORIGINAL_MEASURE = 'Reported original measure',
+  COMMITTED_TO = 'Committed to',
+  RE_COMMITTED_TO = 'Re-Committed to',
+  LEGISLATIVE_INTEREST = 'Legislative Interest',
+}
+
+export enum IdentifiedBy {
+  HOUSE = 'House',
+  SENATE = 'Senate',
+  CRS = 'CRS',
+}
+
 export enum HouseAmendmentType {
   HAMDT = 'HAMDT',
 }
@@ -84,11 +102,6 @@ export enum BillType {
   HJRES = 'HJRES',
   HCONRES = 'HCONRES',
   HRES = 'HRES',
-}
-
-export enum LawType {
-  PUBLIC = 'pub',
-  PRIVATE = 'priv',
 }
 
 export enum MemberType {
