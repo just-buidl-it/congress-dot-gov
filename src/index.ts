@@ -20,7 +20,7 @@ export { SenateCommunicationClient } from './clients/senate-communication';
 export { SummariesClient } from './clients/summaries';
 export { TreatyClient } from './clients/treaty';
 
-export type * from './types';
+export type * from './params';
 export type * from './schemas/constants';
 export type * from './schemas/amendment';
 export type * from './schemas/bill';

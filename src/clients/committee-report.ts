@@ -4,7 +4,7 @@ import {
   DateFilterParams,
   PaginatedResponse,
   BaseParams,
-} from '../types';
+} from '../params';
 import {
   ListCommitteeReport,
   CommitteeReport,

@@ -1,6 +1,6 @@
 import { BaseClient, CongressGovURLSearchParams } from './base';
 import { RateLimitExceededError, CongressGovApiError } from '../utils/errors';
-import { Format } from '../types';
+import { Format } from '../params';
 
 let fetchSpy: jest.SpyInstance;
 

@@ -8,7 +8,7 @@ import type {
   DateFilterParams,
   BaseParams,
   PaginatedResponse,
-} from '../types';
+} from '../params';
 import type {
   AmendmentSummary,
   Amendment,

@@ -62,3 +62,8 @@ export interface CongressionalRecordFilterParams extends PaginationParams {
 }
 
 export type PaginatedResponse<T> = BasePaginatedResponse & T;
+
+export enum LawTypeParam {
+  PUBLIC = 'pub',
+  PRIVATE = 'priv',
+}

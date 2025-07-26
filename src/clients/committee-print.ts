@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import type { PaginationParams, DateFilterParams, BaseParams } from '../types';
+import type { PaginationParams, DateFilterParams, BaseParams } from '../params';
 import type {
   CommitteePrint,
   ListCommitteePrint,

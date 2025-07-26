@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import { BaseParams, PaginationParams } from '../types';
+import { BaseParams, PaginationParams } from '../params';
 import type {
   ListTreaty,
   Treaty,

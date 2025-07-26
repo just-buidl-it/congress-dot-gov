@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import type { PaginationParams } from '../types';
+import type { PaginationParams } from '../params';
 import type {
   ListSenateCommunication,
   SenateCommunication,

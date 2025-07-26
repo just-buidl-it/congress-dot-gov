@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import type { BaseParams, PaginationParams } from '../types';
+import type { BaseParams, PaginationParams } from '../params';
 import type {
   DailyCongressionalRecord,
   DailyCongressionalRecordIssue,

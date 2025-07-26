@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import { AbnormalPaginatedResponse, CongressionalRecordFilterParams } from '../types';
+import { AbnormalPaginatedResponse, CongressionalRecordFilterParams } from '../params';
 import type { CapitalizedCongressionalRecord } from '../schemas/congressional-record';
 import adaptAbnormalResponseAdapter from '../utils/abnormal-response-adapter';
 

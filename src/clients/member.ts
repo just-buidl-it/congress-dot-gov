@@ -4,7 +4,7 @@ import type {
   PaginatedResponse,
   BaseParams,
   DateFilterParams,
-} from '../types';
+} from '../params';
 import type {
   MemberSummary,
   MemberDetail,
