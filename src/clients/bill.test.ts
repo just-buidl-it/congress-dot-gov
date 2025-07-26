@@ -14,7 +14,8 @@ import {
   LawSchema,
   LawSummarySchema,
 } from '../schemas/bill';
-import { BillType, LawType } from '../schemas/constants';
+import { BillType } from '../schemas/constants';
+import { LawTypeParam } from '../params';
 
 const API_KEY = process.env.CONGRESS_GOV_API_KEY || 'TEST_KEY';
 
@@ -195,7 +196,7 @@ describe('BillClient Tests', () => {
 
   describe('getLawsByType', () => {
     it('should return laws by type', async () => {
-      const { bills } = await client.getLawsByType(117, LawType.PUBLIC_LAW);
+      const { bills } = await client.getLawsByType(117, LawTypeParam.PUBLIC);
 
       expect(Array.isArray(bills)).toBe(true);
       bills.forEach((law) => {
@@ -206,7 +207,7 @@ describe('BillClient Tests', () => {
 
   describe('getLaw', () => {
     it('should return specific law', async () => {
-      const { bill } = await client.getLaw(117, LawType.PUBLIC_LAW, '1');
+      const { bill } = await client.getLaw(117, LawTypeParam.PUBLIC, '1');
       expect(LawSchema.parse(bill));
     });
   });

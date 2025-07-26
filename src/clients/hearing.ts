@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import type { PaginationParams, PaginatedResponse, BaseParams } from '../types';
+import type { PaginationParams, PaginatedResponse, BaseParams } from '../params';
 import type { Hearing, ListHearing } from '../schemas/hearing';
 import type { Chamber } from '../schemas/constants';
 

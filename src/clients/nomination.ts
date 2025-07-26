@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import type { PaginationParams, BaseParams, DateFilterParams } from '../types';
+import type { PaginationParams, BaseParams, DateFilterParams } from '../params';
 import type {
   ListNomination,
   Nomination,

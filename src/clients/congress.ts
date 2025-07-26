@@ -27,7 +27,7 @@
  * }
  */
 import { BaseClient } from './base';
-import type { PaginationParams, PaginatedResponse, BaseParams } from '../types';
+import type { PaginationParams, PaginatedResponse, BaseParams } from '../params';
 import type { CongressSummary, Congress } from '../schemas/congress';
 
 export class CongressClient extends BaseClient {

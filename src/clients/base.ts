@@ -4,7 +4,7 @@ import type {
   BaseParams,
   DateFilterParams,
   SortParams,
-} from '../types';
+} from '../params';
 import {
   RateLimitExceededError,
   CongressGovApiError,

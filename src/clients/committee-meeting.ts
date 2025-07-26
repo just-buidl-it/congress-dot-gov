@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import { PaginationParams } from '../types';
+import { PaginationParams } from '../params';
 import { CommitteeMeeting, ListCommitteeMeeting } from '../schemas/committee-meeting';
 import { Chamber } from '../schemas/constants';
 

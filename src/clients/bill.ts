@@ -5,7 +5,8 @@ import type {
   PaginatedResponse,
   DateFilterParams,
   SortParams,
-} from '../types';
+  LawTypeParam,
+} from '../params';
 import type {
   BillSummary,
   Bill,
@@ -20,7 +21,7 @@ import type {
   BillTitle,
   Law,
 } from '../schemas/bill';
-import type { BillType, LawType } from '../schemas/constants';
+import type { BillType } from '../schemas/constants';
 
 export class BillClient extends BaseClient {
   constructor({ apiKey }: { apiKey: string }) {
@@ -292,7 +293,7 @@ export class BillClient extends BaseClient {
    */
   async getLawsByType(
     congress: number,
-    lawType: LawType,
+    lawType: LawTypeParam,
     params: PaginationParams & DateFilterParams & SortParams = {},
   ) {
     return this.get<PaginatedResponse<{ bills: Law[] }>>(
@@ -311,7 +312,7 @@ export class BillClient extends BaseClient {
    */
   async getLaw(
     congress: number,
-    lawType: LawType,
+    lawType: LawTypeParam,
     lawNumber: string,
     params: PaginationParams = {},
   ) {
@@ -322,7 +323,6 @@ export class BillClient extends BaseClient {
 export type {
   Bill,
   BillType,
-  LawType,
   BillAction,
   BillAmendment,
   BillCommittee,

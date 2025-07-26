@@ -4,7 +4,7 @@ import type {
   DateFilterParams,
   SortParams,
   PaginatedResponse,
-} from '../types';
+} from '../params';
 import type { BillType } from './bill';
 import type { Summary } from '../schemas/summary';
 

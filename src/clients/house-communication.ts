@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import { PaginationParams, BaseParams } from '../types';
+import { PaginationParams, BaseParams } from '../params';
 import {
   ListHouseCommunication,
   HouseCommunicationByCongress,

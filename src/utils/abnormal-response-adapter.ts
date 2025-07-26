@@ -2,7 +2,7 @@ import {
   AbnormalPaginatedResponse,
   PaginatedResponse,
   CongressionalRecordFilterParams,
-} from '../types';
+} from '../params';
 import type {
   CongressionalRecord,
   CapitalizedCongressionalRecord,

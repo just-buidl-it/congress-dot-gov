@@ -1,5 +1,5 @@
 import { BaseClient } from './base';
-import { PaginationParams, PaginatedResponse, BaseParams } from '../types';
+import { PaginationParams, PaginatedResponse, BaseParams } from '../params';
 import type {
   ListHouseRequirement,
   HouseRequirement,
