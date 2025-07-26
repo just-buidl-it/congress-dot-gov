@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.0](https://github.com/just-buidl-it/congress-dot-gov/compare/0.4.3...0.5.0) (2025-07-26)
+
+### Features
+
+* add standardized bill committee schema ([ea09f0a](https://github.com/just-buidl-it/congress-dot-gov/commit/ea09f0aba6507587c37517ebe9b5453e1cac25f8))
+
 ## [0.4.3](https://github.com/just-buidl-it/congress-dot-gov/compare/0.4.2...0.4.3) (2025-07-16)
 
 ## [0.4.2](https://github.com/just-buidl-it/congress-dot-gov/compare/0.4.1...0.4.2) (2025-07-16)
