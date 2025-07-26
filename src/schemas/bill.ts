@@ -23,6 +23,7 @@
 import { z } from 'zod/v4';
 import {
   ActivityName,
+  ActivityNameTypo,
   BillType,
   BillActionType,
   Chamber,
@@ -375,8 +376,10 @@ export const BillCommitteeSchema = z.strictObject({
       date: z.string(),
       /** The name of the committee or subcommittee activity.
        * Possible values are "Referred to", "Re-Referred to", "Hearings by", "Markup by", "Reported by", "Reported original measure", "Committed to", "Re-Committed to", and "Legislative Interest". (e.g. Referred to)
+       * This field may be returned as "Referred To" instead of "Referred to".
+       * Also returns undocumented values "Discharged From"
        */
-      name: z.enum(ActivityName),
+      name: z.enum({...ActivityName, ...ActivityNameTypo})
     }),
   ),
   /** The chamber where the committee or subcommittee operates.
@@ -424,6 +427,23 @@ export const BillCommitteeSchema = z.strictObject({
       }),
     )
     .optional(),
+});
+
+export const BillCommitteeStandardizeSchema = BillCommitteeSchema.extend({
+  activities: z.array(
+    z.strictObject({
+      date: z.string(),
+      name: z.preprocess(
+        (val) => {
+          if (val === ActivityNameTypo.REFERRED_TO_CAPITALIZED) {
+            return ActivityName.REFERRED_TO;
+          }
+          console.log(val);
+          return val;
+        },
+        z.enum(ActivityName)),
+    }),
+  ),
 });
 
 /**
