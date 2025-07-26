@@ -49,8 +49,8 @@ const billClient = new BillClient({
 await billClient.getLatestBills();
 ```
 
-### Schemas
-Schemas can be imported from the schemas path. You can then assert any responses with these schemas.
+## Schemas and Irregularities
+Validation schemas can be imported from the schemas path. You can then assert any responses with these schemas. These schemas are inferred to type the responses from the API and do not transform the returned data.
 
 
 ```typescript
@@ -68,13 +68,21 @@ BillSchema.parse(response)
 
 ```
 
-## Irregularities
-There are some known irregularities and probably more unknown irregularities with the returned data.
+### Irregularities
+There are some known irregularities and probably more unknown irregularities with the returned data. Schemas to standardize returned data according to the documentation are provided 
 
+**Standardization schemas:**
+- `BillCommitteeStandardizeSchema` 
 
+**Known Issues:**
 - The committee report for report number 617 of type HRPT for congress 116 contains a period `H.Rept.` instead of `H.Rept`. 
 This returned as is and reflected with an extra entry in the `CommitteeReportType` enum.
 
+- Bill committee name `Referred to` may be returned as `Referred To`.
+
+Responses that aren't properly transformed from xml to JSON or have improper casing are standardized by the client. 
+
+**Known Issues:**
 - The Congressional Record endpoint returns an abnormal data shape. The handler for this endpoint uses an adapter to reshape it to the standard response.
 
 - On the Committee client, the response for `getCommitteeBills` renames `committee-bills` to `committeeBills` in the response.

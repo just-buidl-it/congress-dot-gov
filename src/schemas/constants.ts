@@ -8,6 +8,11 @@ export enum ActivityName {
   COMMITTED_TO = 'Committed to',
   RE_COMMITTED_TO = 'Re-Committed to',
   LEGISLATIVE_INTEREST = 'Legislative Interest',
+  DISCHARGED_FROM = 'Discharged From',
+}
+
+export enum ActivityNameTypo {
+  REFERRED_TO_CAPITALIZED = 'Referred To',
 }
 
 export enum IdentifiedBy {
@@ -182,8 +187,8 @@ export enum CommitteeReportType {
 }
 
 export enum CommitteeReportReportType {
-  HRPT = 'S.Rept',
-  SRPT = 'H.Rept',
+  SRPT = 'S.Rept',
+  HRPT = 'H.Rept',
   ERPT = 'Ex.Rept',
   HRPT_DOT = 'H.Rept.', // typo in Committee Report (congress - 116, CommitteeReportType.HRPT, report number - '617')
 }
