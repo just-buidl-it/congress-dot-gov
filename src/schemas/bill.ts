@@ -70,7 +70,7 @@ Possible values are "HR", "S", "HJRES", "SJRES", "HCONRES", "SCONRES", "HRES", a
   type: z.enum(BillType),
   /** The date of update on Congress.gov. This update date does not include updates to bill text. The `updateDate` is the date of the last update received for the legislative entity . It’s not a date corresponding to the legislative date or legislative action date. */
   updateDate: z.string(),
-  /** The date of update on Congress.gov, including if the update was to bill text.The is the date of the last update received for the legislative entity . It’s not a date corresponding to the legislative date or legislative action date. */
+  /** The date of update on Congress.gov, including if the update was to bill text. The is the date of the last update received for the legislative entity . It’s not a date corresponding to the legislative date or legislative action date. */
   updateDateIncludingText: z.string(),
   /** A referrer URL to the bill or resolution item in the API. */
   url: z.url(),
@@ -438,7 +438,6 @@ export const BillCommitteeStandardizeSchema = BillCommitteeSchema.extend({
           if (val === ActivityNameTypo.REFERRED_TO_CAPITALIZED) {
             return ActivityName.REFERRED_TO;
           }
-          console.log(val);
           return val;
         },
         z.enum(ActivityName)),
