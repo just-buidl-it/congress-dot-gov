@@ -10,15 +10,11 @@ import {
   CongressGovApiError,
   CongressGovSdkError,
 } from '../utils/errors';
+import type { RateLimiter, RateLimitInfo } from '../rate-limiter/rate-limiter';
 
 export interface CongressGovConfig {
   apiKey: string;
-  endpoint?: string;
-}
-
-export interface RateLimitInfo {
-  limit: number;
-  remaining: number;
+  rateLimiter?: RateLimiter;
 }
 
 type Params = Partial<PaginationParams & BaseParams & DateFilterParams & SortParams>;
@@ -64,8 +60,13 @@ export class BaseClient {
   protected readonly apiKey: string;
   protected readonly baseUrl: string;
   protected readonly endpoint: string;
+  protected readonly rateLimiter?: RateLimiter;
 
-  constructor({ apiKey, endpoint = '' }: CongressGovConfig) {
+  constructor({
+    apiKey,
+    endpoint = '',
+    rateLimiter,
+  }: CongressGovConfig & { endpoint?: string }) {
     if (!apiKey) {
       throw new CongressGovSdkError('API key is required');
     }
@@ -73,12 +74,20 @@ export class BaseClient {
     this.apiKey = apiKey;
     this.baseUrl = `https://api.congress.gov`;
     this.endpoint = endpoint;
+
+    if (rateLimiter) {
+      this.rateLimiter = rateLimiter;
+    }
   }
 
-  protected async get<T>(
+  async get<T>(
     endpoint: string,
     params: Params,
   ): Promise<T & { rateLimit: RateLimitInfo }> {
+    if (this.rateLimiter) {
+      await this.rateLimiter.waitForNextRequest();
+    }
+
     const searchParams = new CongressGovURLSearchParams(params);
     const url = new URL(`/v3${this.endpoint}${endpoint}`, this.baseUrl);
     url.search = searchParams.toUrlSearchParams();
@@ -93,10 +102,14 @@ export class BaseClient {
       limit: parseInt(response.headers.get('x-ratelimit-limit') || '0'),
       remaining: parseInt(response.headers.get('x-ratelimit-remaining') || '0'),
     };
+
+    if (this.rateLimiter) {
+      this.rateLimiter.updateRateLimitInfo(rateLimit);
+    }
+
     const data = await response.json();
 
     if (!response.ok) {
-      // Check for rate limit error and throw with limit details
       if (response.status === 429) {
         throw new RateLimitExceededError(
           'Rate limit exceeded. Please try again later.',
@@ -105,7 +118,6 @@ export class BaseClient {
         );
       }
 
-      // Otherwise throw our generic error
       throw new CongressGovApiError(data, response.status, endpoint);
     }
 

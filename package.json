@@ -23,6 +23,11 @@
       "require": "./dist/schemas/index.cjs",
       "import": "./dist/schemas/index.mjs",
       "types": "./dist/schemas/index.d.ts"
+    },
+    "./rate-limiter": {
+      "require": "./dist/rate-limiter/index.cjs",
+      "import": "./dist/rate-limiter/index.mjs",
+      "types": "./dist/rate-limiter/index.d.ts"
     }
   },
   "homepage": "https://github.com/just-buidl-it/congress-dot-gov",

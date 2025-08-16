@@ -5,10 +5,11 @@ import type {
   DailyCongressionalRecordIssue,
   DailyCongressionalRecordArticle,
 } from '../schemas/daily-congressional-record';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class DailyCongressionalRecordClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/daily-congressional-record' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/daily-congressional-record' });
   }
 
   /**

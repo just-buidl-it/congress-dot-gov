@@ -25,15 +25,15 @@ The schemas are optional and require the optional `zod` dependency. The schemas 
 ### Full Client
 
 ```typescript
-import { CongressDotGov } from 'congress-dot-gov';
+import { CongressDotGovClient } from 'congress-dot-gov';
 
-const client = new CongressDotGov({
+const client = new CongressDotGovClient({
   apiKey: 'YOUR_API_KEY'
 });
 
-await client.bill.getLatestBills();
+await client.bill.getBills();
 
-await client.member.getCurrentMembers('house');
+await client.member.getMembers();
 
 ```
 
@@ -46,7 +46,61 @@ const billClient = new BillClient({
   apiKey: 'YOUR_API_KEY'
 });
 
-await billClient.getLatestBills();
+await billClient.getBills();
+```
+
+### Rate Limiting
+
+The Congress.gov API has a rate limit of 5,000 requests per hour. To help handle rate limits, clients accept an optional rate limiter to track and throttle requests automatically.
+
+#### Rate Limiter Interface
+
+```typescript
+interface RateLimitInfo {
+  limit: number;
+  remaining: number;
+}
+
+interface RateLimiter {
+  waitForNextRequest: () => Promise<void>;
+  updateRateLimitInfo: (rateLimitInfo: RateLimitInfo) => void;
+}
+```
+
+For convenience, the SDK includes an adaptive rate limiter that automatically adjusts delays based on your current rate limit status:
+
+```typescript
+import { BillClient } from 'congress-dot-gov';
+import { AdaptiveRateLimiter } from 'congress-dot-gov/rate-limiter';
+
+const rateLimiter = new AdaptiveRateLimiter();
+
+const billClient = new BillClient({
+  apiKey: 'YOUR_API_KEY',
+  rateLimiter: rateLimiter
+});
+
+```
+
+#### Custom Rate Limiter
+
+You can also implement your own rate limiter by implementing the `RateLimiter` interface:
+
+```typescript
+class CustomRateLimiter implements RateLimiter {
+  async waitForNextRequest(): Promise<void> {
+    // Custom throttling logic
+  }
+  
+  updateRateLimitInfo(rateLimitInfo: RateLimitInfo): void {
+    // Update internal state based on API response headers
+  }
+}
+
+const billClient = new BillClient({
+  apiKey: 'YOUR_API_KEY',
+  rateLimiter: new CustomRateLimiter()
+});
 ```
 
 ## Schemas and Irregularities
@@ -62,7 +116,7 @@ const billClient = new BillClient({
   apiKey: 'YOUR_API_KEY'
 });
 
-const response = await billClient.getLatestBills();
+const response = await billClient.getBills();
 
 BillSchema.parse(response)
 

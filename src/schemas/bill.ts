@@ -379,7 +379,7 @@ export const BillCommitteeSchema = z.strictObject({
        * This field may be returned as "Referred To" instead of "Referred to".
        * Also returns undocumented values "Discharged From"
        */
-      name: z.enum({...ActivityName, ...ActivityNameTypo})
+      name: z.enum({ ...ActivityName, ...ActivityNameTypo }),
     }),
   ),
   /** The chamber where the committee or subcommittee operates.

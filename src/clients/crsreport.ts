@@ -1,10 +1,11 @@
 import { BaseClient } from './base';
 import { BaseParams, PaginationParams } from '../params';
 import type { ListCRSReport, CRSReport } from '../schemas/crsreport';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class CRSReportClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/crsreport' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/crsreport' });
   }
 
   /**

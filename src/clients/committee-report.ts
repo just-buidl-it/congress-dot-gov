@@ -11,10 +11,11 @@ import {
   CommitteeReportText,
 } from '../schemas/committee-report';
 import { CommitteeReportType } from '../schemas/constants';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class CommitteeReportClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/committee-report' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/committee-report' });
   }
 
   /**

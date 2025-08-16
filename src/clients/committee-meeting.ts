@@ -2,10 +2,11 @@ import { BaseClient } from './base';
 import { PaginationParams } from '../params';
 import { CommitteeMeeting, ListCommitteeMeeting } from '../schemas/committee-meeting';
 import { Chamber } from '../schemas/constants';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class CommitteeMeetingClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/committee-meeting' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/committee-meeting' });
   }
 
   /**

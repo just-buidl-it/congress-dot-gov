@@ -2,10 +2,11 @@ import { BaseClient } from './base';
 import { AbnormalPaginatedResponse, CongressionalRecordFilterParams } from '../params';
 import type { CapitalizedCongressionalRecord } from '../schemas/congressional-record';
 import adaptAbnormalResponseAdapter from '../utils/abnormal-response-adapter';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class CongressionalRecordClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/congressional-record' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/congressional-record' });
   }
 
   /**

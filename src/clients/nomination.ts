@@ -8,10 +8,11 @@ import type {
   NominationCommittee,
   NominationHearing,
 } from '../schemas/nomination';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class NominationClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/nomination' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/nomination' });
   }
 
   /**

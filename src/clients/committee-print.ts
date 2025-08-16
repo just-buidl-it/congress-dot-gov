@@ -6,10 +6,11 @@ import type {
   CommitteePrintText,
 } from '../schemas/committee-print';
 import { Chamber } from '../schemas/constants';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class CommitteePrintClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/committee-print' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/committee-print' });
   }
 
   /**

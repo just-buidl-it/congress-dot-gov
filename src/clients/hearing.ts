@@ -2,10 +2,11 @@ import { BaseClient } from './base';
 import type { PaginationParams, PaginatedResponse, BaseParams } from '../params';
 import type { Hearing, ListHearing } from '../schemas/hearing';
 import type { Chamber } from '../schemas/constants';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class HearingClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/hearing' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/hearing' });
   }
 
   /**

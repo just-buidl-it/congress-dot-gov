@@ -11,14 +11,15 @@ import type {
   SponsoredLegislation,
   CoSponsoredLegislation,
 } from '../schemas/member';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export interface MemberParams {
   currentMember?: boolean;
 }
 
 export class MemberClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/member' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/member' });
   }
 
   /**

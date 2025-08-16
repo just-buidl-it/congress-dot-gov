@@ -6,10 +6,11 @@ import type {
   TreatyAction,
   TreatyCommittee,
 } from '../schemas/treaty';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class TreatyClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/treaty' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/treaty' });
   }
 
   /**

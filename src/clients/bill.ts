@@ -1,4 +1,4 @@
-import { BaseClient } from './base';
+import { BaseClient, CongressGovConfig } from './base';
 import type {
   PaginationParams,
   BaseParams,
@@ -24,8 +24,8 @@ import type {
 import type { BillType } from '../schemas/constants';
 
 export class BillClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey });
+  constructor({ apiKey, rateLimiter }: CongressGovConfig) {
+    super({ apiKey, rateLimiter });
   }
 
   /**
