@@ -46,6 +46,17 @@ export const CongressSummarySchema = z.strictObject({
   updateDate: z.iso.datetime(),
 });
 
+export const CongressSummaryStandardizeSchema = CongressSummarySchema.extend({
+  startYear: z.preprocess(
+    (val) => Number(val),
+    z.number(),
+  ),
+  endYear: z.preprocess(
+    (val) => Number(val),
+    z.number(),
+  ),
+});
+
 /**
  * Zod schema for validating detailed entity returned from the `/congress/{congress}` endpoint.
  */
@@ -82,6 +93,17 @@ export const CongressSchema = z.strictObject({
   url: z.url(),
   /** The date of update in Congress.gov. (e.g. 2019-01-03T18:37:12Z) */
   updateDate: z.iso.datetime(),
+});
+
+export const CongressStandardizeSchema = CongressSchema.extend({
+  startYear: z.preprocess(
+    (val) => Number(val),
+    z.number(),
+  ),
+  endYear: z.preprocess(
+    (val) => Number(val),
+    z.number(),
+  ),
 });
 
 /**
