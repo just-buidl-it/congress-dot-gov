@@ -73,8 +73,11 @@ There are some known irregularities and probably more unknown irregularities wit
 
 **Standardization schemas:**
 - `BillCommitteeStandardizeSchema` 
+- `CongressStandardizeSchema`
 
 **Known Issues:**
+- Congress startYear and endYear are returned as strings, where as in other places they are numbers
+
 - The committee report for report number 617 of type HRPT for congress 116 contains a period `H.Rept.` instead of `H.Rept`. 
 This returned as is and reflected with an extra entry in the `CommitteeReportType` enum.
 
