@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/just-buidl-it/congress-dot-gov/compare/0.5.0...0.5.1) (2025-08-16)
+
+### Bug Fixes
+
+* postal code as number ([9437e2a](https://github.com/just-buidl-it/congress-dot-gov/commit/9437e2a234c7014776c6007d7e02eaa223421c54))
+* process congress schema year to numbrer ([a6166f5](https://github.com/just-buidl-it/congress-dot-gov/commit/a6166f526365c87414a13f8f4c2b1c2841d74a9d))
+
 ## [0.5.0](https://github.com/just-buidl-it/congress-dot-gov/compare/0.4.3...0.5.0) (2025-07-26)
 
 ### Features
