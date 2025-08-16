@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.0](https://github.com/just-buidl-it/congress-dot-gov/compare/0.5.1...0.6.0) (2025-08-16)
+
+### Features
+
+* add rate limiter support with adaptive backoff limiter ([2c7b7a4](https://github.com/just-buidl-it/congress-dot-gov/commit/2c7b7a484b9870493c0c3f7d0160f389c7c7d1aa))
+
 ## [0.5.1](https://github.com/just-buidl-it/congress-dot-gov/compare/0.5.0...0.5.1) (2025-08-16)
 
 ### Bug Fixes
