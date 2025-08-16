@@ -5,6 +5,7 @@ import type {
   HouseRollCallVote,
   HouseRollCallMemberVote,
 } from '../schemas/house-vote';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export interface HouseVote {
   congress: number;
@@ -35,8 +36,8 @@ export interface HouseVoteMember {
 }
 
 export class HouseVoteClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/house-vote' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/house-vote' });
   }
 
   /**

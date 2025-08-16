@@ -7,10 +7,11 @@ import type {
 } from '../params';
 import type { BillType } from './bill';
 import type { Summary } from '../schemas/summary';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class SummariesClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/summaries' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/summaries' });
   }
 
   /**

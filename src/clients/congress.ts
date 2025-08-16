@@ -29,10 +29,11 @@
 import { BaseClient } from './base';
 import type { PaginationParams, PaginatedResponse, BaseParams } from '../params';
 import type { CongressSummary, Congress } from '../schemas/congress';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class CongressClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/congress' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/congress' });
   }
 
   /**

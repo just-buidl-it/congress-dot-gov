@@ -5,10 +5,11 @@ import type {
   HouseRequirement,
   MatchingCommunications,
 } from '../schemas/house-requirement';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class HouseRequirementClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/house-requirement' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/house-requirement' });
   }
 
   /**

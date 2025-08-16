@@ -4,10 +4,11 @@ import type {
   ListSenateCommunication,
   SenateCommunication,
 } from '../schemas/senate-communication';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class SenateCommunicationClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/senate-communication' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/senate-communication' });
   }
 
   /**

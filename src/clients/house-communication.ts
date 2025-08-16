@@ -5,10 +5,11 @@ import {
   HouseCommunicationByCongress,
   HouseCommunication,
 } from '../schemas/house-communication';
+import type { RateLimiter } from '../rate-limiter/rate-limiter';
 
 export class HouseCommunicationClient extends BaseClient {
-  constructor({ apiKey }: { apiKey: string }) {
-    super({ apiKey, endpoint: '/house-communication' });
+  constructor({ apiKey, rateLimiter }: { apiKey: string; rateLimiter?: RateLimiter }) {
+    super({ apiKey, rateLimiter, endpoint: '/house-communication' });
   }
 
   /**
