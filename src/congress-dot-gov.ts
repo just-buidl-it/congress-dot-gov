@@ -18,49 +18,236 @@ import { NominationClient } from './clients/nomination';
 import { SenateCommunicationClient } from './clients/senate-communication';
 import { SummariesClient } from './clients/summaries';
 import { TreatyClient } from './clients/treaty';
+import { type CongressGovConfig } from './clients/base';
+
+interface ClientMap {
+  amendment: AmendmentClient;
+  bills: BillClient;
+  boundCongressionalRecord: BoundCongressionalRecordClient;
+  committeeMeeting: CommitteeMeetingClient;
+  committeePrint: CommitteePrintClient;
+  committeeReport: CommitteeReportClient;
+  committee: CommitteeClient;
+  congress: CongressClient;
+  congressionalRecord: CongressionalRecordClient;
+  crsReport: CRSReportClient;
+  dailyCongressionalRecord: DailyCongressionalRecordClient;
+  hearing: HearingClient;
+  houseCommunication: HouseCommunicationClient;
+  houseRequirement: HouseRequirementClient;
+  houseVote: HouseVoteClient;
+  member: MemberClient;
+  nomination: NominationClient;
+  senateCommunication: SenateCommunicationClient;
+  summaries: SummariesClient;
+  treaty: TreatyClient;
+}
 
 export class CongressDotGovClient {
-  public readonly amendment: AmendmentClient;
-  public readonly bill: BillClient;
-  public readonly boundCongressionalRecord: BoundCongressionalRecordClient;
-  public readonly committeeMeeting: CommitteeMeetingClient;
-  public readonly committeePrint: CommitteePrintClient;
-  public readonly committeeReport: CommitteeReportClient;
-  public readonly congress: CongressClient;
-  public readonly member: MemberClient;
-  public readonly committee: CommitteeClient;
-  public readonly congressionalRecord: CongressionalRecordClient;
-  public readonly crsReport: CRSReportClient;
-  public readonly dailyCongressionalRecord: DailyCongressionalRecordClient;
-  public readonly hearing: HearingClient;
-  public readonly houseCommunication: HouseCommunicationClient;
-  public readonly houseRequirement: HouseRequirementClient;
-  public readonly houseVote: HouseVoteClient;
-  public readonly nomination: NominationClient;
-  public readonly senateCommunication: SenateCommunicationClient;
-  public readonly summaries: SummariesClient;
-  public readonly treaty: TreatyClient;
+  private config: Omit<CongressGovConfig, 'endpoint'>;
+  private clients: Partial<ClientMap> = {};
 
-  constructor({ apiKey }: { apiKey: string }) {
-    this.amendment = new AmendmentClient({ apiKey });
-    this.boundCongressionalRecord = new BoundCongressionalRecordClient({ apiKey });
-    this.committeeMeeting = new CommitteeMeetingClient({ apiKey });
-    this.committeePrint = new CommitteePrintClient({ apiKey });
-    this.committeeReport = new CommitteeReportClient({ apiKey });
-    this.congress = new CongressClient({ apiKey });
-    this.bill = new BillClient({ apiKey });
-    this.member = new MemberClient({ apiKey });
-    this.committee = new CommitteeClient({ apiKey });
-    this.congressionalRecord = new CongressionalRecordClient({ apiKey });
-    this.crsReport = new CRSReportClient({ apiKey });
-    this.dailyCongressionalRecord = new DailyCongressionalRecordClient({ apiKey });
-    this.hearing = new HearingClient({ apiKey });
-    this.houseCommunication = new HouseCommunicationClient({ apiKey });
-    this.houseRequirement = new HouseRequirementClient({ apiKey });
-    this.houseVote = new HouseVoteClient({ apiKey });
-    this.nomination = new NominationClient({ apiKey });
-    this.senateCommunication = new SenateCommunicationClient({ apiKey });
-    this.summaries = new SummariesClient({ apiKey });
-    this.treaty = new TreatyClient({ apiKey });
+  constructor(config: Omit<CongressGovConfig, 'endpoint'>) {
+    this.config = config;
+  }
+
+  /**
+   * Amendment client for accessing amendment data
+   */
+  get amendment(): AmendmentClient {
+    if (!this.clients.amendment) {
+      this.clients.amendment = new AmendmentClient(this.config);
+    }
+    return this.clients.amendment;
+  }
+
+  /**
+   * Bills client for accessing bill data
+   */
+  get bills(): BillClient {
+    if (!this.clients.bills) {
+      this.clients.bills = new BillClient(this.config);
+    }
+    return this.clients.bills;
+  }
+
+  /**
+   * Bound Congressional Record client for accessing bound congressional record data
+   */
+  get boundCongressionalRecord(): BoundCongressionalRecordClient {
+    if (!this.clients.boundCongressionalRecord) {
+      this.clients.boundCongressionalRecord = new BoundCongressionalRecordClient(this.config);
+    }
+    return this.clients.boundCongressionalRecord;
+  }
+
+  /**
+   * Committee Meeting client for accessing committee meeting data
+   */
+  get committeeMeeting(): CommitteeMeetingClient {
+    if (!this.clients.committeeMeeting) {
+      this.clients.committeeMeeting = new CommitteeMeetingClient(this.config);
+    }
+    return this.clients.committeeMeeting;
+  }
+
+  /**
+   * Committee Print client for accessing committee print data
+   */
+  get committeePrint(): CommitteePrintClient {
+    if (!this.clients.committeePrint) {
+      this.clients.committeePrint = new CommitteePrintClient(this.config);
+    }
+    return this.clients.committeePrint;
+  }
+
+  /**
+   * Committee Report client for accessing committee report data
+   */
+  get committeeReport(): CommitteeReportClient {
+    if (!this.clients.committeeReport) {
+      this.clients.committeeReport = new CommitteeReportClient(this.config);
+    }
+    return this.clients.committeeReport;
+  }
+
+  /**
+   * Committee client for accessing committee data
+   */
+  get committee(): CommitteeClient {
+    if (!this.clients.committee) {
+      this.clients.committee = new CommitteeClient(this.config);
+    }
+    return this.clients.committee;
+  }
+
+  /**
+   * Congress client for accessing congress data
+   */
+  get congress(): CongressClient {
+    if (!this.clients.congress) {
+      this.clients.congress = new CongressClient(this.config);
+    }
+    return this.clients.congress;
+  }
+
+  /**
+   * Congressional Record client for accessing congressional record data
+   */
+  get congressionalRecord(): CongressionalRecordClient {
+    if (!this.clients.congressionalRecord) {
+      this.clients.congressionalRecord = new CongressionalRecordClient(this.config);
+    }
+    return this.clients.congressionalRecord;
+  }
+
+  /**
+   * CRS Report client for accessing CRS report data
+   */
+  get crsReport(): CRSReportClient {
+    if (!this.clients.crsReport) {
+      this.clients.crsReport = new CRSReportClient(this.config);
+    }
+    return this.clients.crsReport;
+  }
+
+  /**
+   * Daily Congressional Record client for accessing daily congressional record data
+   */
+  get dailyCongressionalRecord(): DailyCongressionalRecordClient {
+    if (!this.clients.dailyCongressionalRecord) {
+      this.clients.dailyCongressionalRecord = new DailyCongressionalRecordClient(this.config);
+    }
+    return this.clients.dailyCongressionalRecord;
+  }
+
+  /**
+   * Hearing client for accessing hearing data
+   */
+  get hearing(): HearingClient {
+    if (!this.clients.hearing) {
+      this.clients.hearing = new HearingClient(this.config);
+    }
+    return this.clients.hearing;
+  }
+
+  /**
+   * House Communication client for accessing house communication data
+   */
+  get houseCommunication(): HouseCommunicationClient {
+    if (!this.clients.houseCommunication) {
+      this.clients.houseCommunication = new HouseCommunicationClient(this.config);
+    }
+    return this.clients.houseCommunication;
+  }
+
+  /**
+   * House Requirement client for accessing house requirement data
+   */
+  get houseRequirement(): HouseRequirementClient {
+    if (!this.clients.houseRequirement) {
+      this.clients.houseRequirement = new HouseRequirementClient(this.config);
+    }
+    return this.clients.houseRequirement;
+  }
+
+  /**
+   * House Vote client for accessing house vote data
+   */
+  get houseVote(): HouseVoteClient {
+    if (!this.clients.houseVote) {
+      this.clients.houseVote = new HouseVoteClient(this.config);
+    }
+    return this.clients.houseVote;
+  }
+
+  /**
+   * Member client for accessing member data
+   */
+  get member(): MemberClient {
+    if (!this.clients.member) {
+      this.clients.member = new MemberClient(this.config);
+    }
+    return this.clients.member;
+  }
+
+  /**
+   * Nomination client for accessing nomination data
+   */
+  get nomination(): NominationClient {
+    if (!this.clients.nomination) {
+      this.clients.nomination = new NominationClient(this.config);
+    }
+    return this.clients.nomination;
+  }
+
+  /**
+   * Senate Communication client for accessing senate communication data
+   */
+  get senateCommunication(): SenateCommunicationClient {
+    if (!this.clients.senateCommunication) {
+      this.clients.senateCommunication = new SenateCommunicationClient(this.config);
+    }
+    return this.clients.senateCommunication;
+  }
+
+  /**
+   * Summaries client for accessing summaries data
+   */
+  get summaries(): SummariesClient {
+    if (!this.clients.summaries) {
+      this.clients.summaries = new SummariesClient(this.config);
+    }
+    return this.clients.summaries;
+  }
+
+  /**
+   * Treaty client for accessing treaty data
+   */
+  get treaty(): TreatyClient {
+    if (!this.clients.treaty) {
+      this.clients.treaty = new TreatyClient(this.config);
+    }
+    return this.clients.treaty;
   }
 }
