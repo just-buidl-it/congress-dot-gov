@@ -91,7 +91,7 @@ export const MemberDetailSchema = z.strictObject({
       /** The two letter postal abbreviation for the District of Columbia. (DC) */
       district: z.literal('DC'),
       /** The postal zip code for the member’s office in Washington, D.C. (e.g., 20510) */
-      zipCode: z.string().optional(),
+      zipCode: z.number().optional(),
       /**  The telephone number for the member’s office in Washington, D.C. (e.g., (202) 224 - 4242) */
       phoneNumber: z.string().optional(),
     })
@@ -189,7 +189,7 @@ Possible values are "Democratic", "Independent", "Independent Democrat", "Libert
     })
     .optional(),
   /** The state represented by the member. (e.g., Vermont) */
-  state: z.enum(StateName).optional(),
+  state: z.enum(StateName),
   /**  The member’s service in an individual Congress. */
   terms: z.array(
     z.strictObject({
