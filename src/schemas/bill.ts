@@ -474,7 +474,7 @@ Note that this element will be "0" for states, territories, or districts where t
    */
   party: z.enum(PartyCode),
   /** The date the cosponsor withdrew their cosponsorship of the bill or resolution. */
-  sponsorshipDate: z.string(),
+  sponsorshipDate: z.iso.date(),
   /** A two-letter abbreviation for the state, territory, or district represented by the bill or resolution cosponsor. (e.g. VA) */
   state: z.enum(StateCode).optional(),
   /** A referrer URL to the member item in the API. Documentation for the member endpoint is available [here](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/MemberEndpoint.md). (e.g. https://api.congress.gov/v3/member/C001078) */
@@ -536,7 +536,7 @@ export const BillSubjectSchema = z.strictObject({
       /** The name of the legislative subject term attached to a bill or resolution. (e.g. Congressional oversight) */
       name: z.string(),
       /** The date of update on Congress.gov.  */
-      updateDate: z.string(),
+      updateDate: z.iso.datetime(),
     }),
   ),
   /** Policy area term attached to a bill or resolution. Each bill or resolution will have only one policy area term taken from [this list of terms](https://www.congress.gov/help/field-values/policy-area) on Congress.gov.
@@ -547,7 +547,7 @@ export const BillSubjectSchema = z.strictObject({
     /** The name of the policy area term attached to a bill or resolution. */
     name: z.string(),
     /** The update date for the bill subject on Congress.gov. This may be the date the subject was published or re-published. The `updateDate` is the date of the last update received for the legislative entity . It’s not a date corresponding to the legislative date or legislative action date.  */
-    updateDate: z.string().optional(),
+    updateDate: z.iso.datetime().optional(),
   }),
 });
 
@@ -557,13 +557,13 @@ export const BillSubjectSchema = z.strictObject({
  **/
 export const BillSummaryVersionSchema = z.strictObject({
   /** The date of action associated with the bill summary. */
-  actionDate: z.string(),
+  actionDate: z.iso.date(),
   /** The description of the action associated with the bill summary. */
   actionDesc: z.string(),
   /** The text of the bill summary. */
   text: z.string(),
   /** The update date for the bill summary on Congress.gov. This may be the date the summary was published or re-published. The `updateDate` is the date of the last update received for the legislative entity . It’s not a date corresponding to the legislative date or legislative action date. */
-  updateDate: z.string(),
+  updateDate: z.iso.datetime(),
   /** The internal code used by CRS to tag its summaries according to the action associated with the summary.
   Click [here](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/BillEndpoint.md#bill-summary-version-codes-action-descriptions-and-chamber) for a list of codes. Note that the version codes have varied over time. */
   versionCode: z.string(),
@@ -572,7 +572,7 @@ export const BillSummaryVersionSchema = z.strictObject({
 /** Text versions associated with the bill or resolution. Read more about bill text at [About Legislation Text of the U.S. Congress](https://www.congress.gov/help/legislation-text). */
 export const BillTextSchema = z.strictObject({
   /** The date associated with the text version. This date is associated with the date of action, not the printing date. */
-  date: z.string().nullable(),
+  date: z.iso.datetime().nullable(),
   /** Formats of the text version. */
   formats: z.array(
     z.strictObject({
@@ -595,7 +595,7 @@ export const BillTitleSchema = z.strictObject({
   /** The title code for the title type. Please note that Congress.gov is transitioning from a legacy process that involved manual curation to an automated process that associates titles with bill text versions. As a result, certain title types can be duplicated. Please refer to [this list](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/BillEndpoint.md#common-title-type-version-codes-and-descriptions) of common title types. (e.g., 45) */
   titleTypeCode: z.number(),
   /** The update date for the bill title on Congress.gov. This may be the date the title was published or re-published. The `updateDate` is the date of the last update received for the legislative entity . It’s not a date corresponding to the legislative date or legislative action date. */
-  updateDate: z.string(),
+  updateDate: z.iso.datetime(),
   /** The file extension code for the bill text version associated with the title. This element will not populate for all titles (e.g. a display title will never have an associated bill text version). (e.g. EH) */
   billTextVersionCode: z.string().optional(),
   /** The name of the bill text version associated with the title. This element is not populated for all titles (e.g. a display title will never have an associated bill text version). (e.g. Engrossed in House) */
