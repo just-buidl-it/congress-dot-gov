@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.6.1](https://github.com/just-buidl-it/congress-dot-gov/compare/0.6.0...0.6.1) (2025-08-17)
+
 ## [0.6.0](https://github.com/just-buidl-it/congress-dot-gov/compare/0.5.1...0.6.0) (2025-08-16)
 
 ### Features
